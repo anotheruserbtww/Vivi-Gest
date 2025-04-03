@@ -5,9 +5,9 @@ using System.Net.Mail;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
-using GastroByte.Dtos; 
+using ViviGest.Dtos; 
 
-namespace GastroByte.Utilities
+namespace ViviGest.Utilities
 {
     public class EmailConfigUtility
     {

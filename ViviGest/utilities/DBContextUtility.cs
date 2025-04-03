@@ -9,7 +9,7 @@ namespace  ViviGest.Utilities
     public class DBContextUtility
     {
         static string SERVER = "CHARLIE";
-        static string DB_NAME = "ViviGest";
+        static string DB_NAME = "vivigest";
         static string DB_USER = "vivigest";
         static string DB_PASSWORD = "vivigest" +
             "" +

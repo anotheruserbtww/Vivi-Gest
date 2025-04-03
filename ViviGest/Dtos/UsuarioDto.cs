@@ -4,15 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GastroByte.Dtos
+namespace ViviGest.Dtos
 {
     public class UsuarioDto
     {
+        internal int rol;
+
         public int id_usuario { get; set; }
 
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
-        public string nombre { get; set; } = string.Empty;
+        public string nombres { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El apellido es obligatorio.")]
         public string apellidos { get; set; } = string.Empty;
@@ -28,7 +30,7 @@ namespace GastroByte.Dtos
 
         [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
         [EmailAddress(ErrorMessage = "Debe ser un correo electrónico válido.")]
-        public string correo_electronico { get; set; } = string.Empty;
+        public string correo { get; set; } = string.Empty;
 
 
         [Required(ErrorMessage = "La contraseña es obligatoria.")]
