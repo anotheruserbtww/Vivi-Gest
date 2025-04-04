@@ -10,9 +10,9 @@ namespace ViviGest.Services
 {
     public class UsuarioService
     {
-        public UsuarioDto CreateUser(UsuarioDto userModel)
+        public usuariosDto CreateUser(usuariosDto userModel)
         {
-            UsuarioDto responseUserDto = new UsuarioDto();
+            usuariosDto responseUserDto = new usuariosDto();
             UsuarioReposiyoty userReposiyoty = new UsuarioReposiyoty();
             try
             {
@@ -54,15 +54,15 @@ namespace ViviGest.Services
             }
         }
 
-        public IEnumerable<UsuarioDto> GetAllUsuario()
+        public IEnumerable<usuariosDto> GetAllUsuario()
         {
             UsuarioReposiyoty userReposiyoty = new UsuarioReposiyoty();
             return userReposiyoty.GetAllUsuarios(); // Esto ahora debería funcionar correctamente
         }
 
-        public UsuarioDto LoginUser(UsuarioDto loginUser)
+        public usuariosDto LoginUser(usuariosDto loginUser)
         {
-            UsuarioDto responseUserDto = new UsuarioDto();
+            usuariosDto responseUserDto = new usuariosDto();
             UsuarioReposiyoty userReposiyoty = new UsuarioReposiyoty();
 
             try

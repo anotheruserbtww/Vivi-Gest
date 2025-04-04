@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ViviGest.Dtos
 {
-    public class UsuarioDto
+    public class usuariosDto
     {
         internal int rol;
 
@@ -37,7 +37,7 @@ namespace ViviGest.Dtos
         [DataType(DataType.Password)]
         public string contrasena { get; set; } = string.Empty;
 
-        public int id_estado { get; set; }
+       
         public int Response { get; set; }
         public string Message { get; set; } = string.Empty;
         public int id_rol { get; set; }

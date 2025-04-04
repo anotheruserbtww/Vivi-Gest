@@ -8,7 +8,7 @@ namespace  ViviGest.Utilities
 {
     public class DBContextUtility
     {
-        static string SERVER = "CHARLIE";
+        static string SERVER = "DESKTOP-BJ4E2PT";
         static string DB_NAME = "vivigest";
         static string DB_USER = "vivigest";
         static string DB_PASSWORD = "vivigest" +
@@ -28,10 +28,15 @@ namespace  ViviGest.Utilities
                 Con.Open();
                 return true;  // Retorna true si la conexión fue exitosa
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+                return false;  // Retorna false si hubo algún error
+            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;  // Retorna false si hubo algún error
+                Console.WriteLine($"General Error: {ex.Message}");
+                return false;
             }
         }
         //procedimiento que cierra la conexion sqlserver

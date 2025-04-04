@@ -25,12 +25,12 @@ namespace GastroByte.Controllers
         // Procesamiento del Login (POST)
         // Esta acción maneja la lógica cuando el usuario envía el formulario de login
         [HttpPost]
-        public ActionResult Login(UsuarioDto loginUser, string returnUrl = null)
+        public ActionResult Login(usuariosDto loginUser, string returnUrl = null)
         {
             // Verifica si el modelo de usuario está vacío, y si es así, asigna un mensaje de error
             if (loginUser == null)
             {
-                loginUser = new UsuarioDto { Message = "El modelo de usuario no se envió correctamente." };
+                loginUser = new usuariosDto { Message = "El modelo de usuario no se envió correctamente." };
                 return View(loginUser); // Devuelve la vista con el mensaje de error
             }
 
@@ -101,7 +101,7 @@ namespace GastroByte.Controllers
 
         public ActionResult Create()
         {
-            UsuarioDto user = new UsuarioDto
+            usuariosDto user = new usuariosDto
             {
                 Response = 0, // Inicializa Response en 0 o algún valor por defecto
                 Message = string.Empty // Inicializa Message como una cadena vacía
@@ -111,11 +111,11 @@ namespace GastroByte.Controllers
 
         // POST: Usuario/Create
         [HttpPost]
-        public ActionResult Create(UsuarioDto newUser)
+        public ActionResult Create(usuariosDto newUser)
         {
             if (newUser == null)
             {
-                newUser = new UsuarioDto();
+                newUser = new usuariosDto();
                 newUser.Message = "El modelo de usuario no se envió correctamente.";
                 return View(newUser);
             }
@@ -123,7 +123,7 @@ namespace GastroByte.Controllers
             try
             {
                 UsuarioService userService = new UsuarioService();
-                UsuarioDto userResponse = userService.CreateUser(newUser);
+                usuariosDto userResponse = userService.CreateUser(newUser);
 
                 if (userResponse.Response == 1)
                 {

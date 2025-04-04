@@ -1,7 +1,14 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿﻿@{
+    ViewBag.Title = "Inicio";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<h1>Estado de la Conexión</h1>
+
+@if (ViewBag.ConnectionStatus == "Todo Melo")
+{
+    <h2 style="color:green;">@ViewBag.ConnectionStatus</h2>
+}
+else
+{
+    <h2 style="color:red;">@ViewBag.ConnectionStatus</h2>
+}
