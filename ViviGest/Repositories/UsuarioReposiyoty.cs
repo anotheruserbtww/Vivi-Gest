@@ -107,8 +107,8 @@ namespace ViviGest.Repositories
         public bool BuscarUsuario(string username)
         {
             bool result = false;
-            string SQL = "SELECT id_usuario, nombres, contrasena " +
-                         "FROM vivigest.dbo.[usuarios] WHERE nombres = @username";
+            string SQL = "SELECT id_usuario, numero_identificacion, contrasena" +
+                         "FROM vivigest.dbo.[usuarios] WHERE numero_identificacion = @numero_identificacion";
             DBContextUtility connection = new DBContextUtility();
             connection.Connect();
 

@@ -1,0 +1,46 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login-container">
+        <h4>Iniciar Sesión</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            @Html.Label("Nº de documento:", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.numero_documento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numero_documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Contraseña:", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.contrasena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.contrasena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-12 text-center">
+                <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@* Botón para registro *@
+<div class="mt-3">
+    <p>
+        ¿No tienes una cuenta?
+        <a href="@Url.Action("Create", "Usuario")" class="btn btn-secondary ml-2">Regístrate aquí</a>
+    </p>
+</div>
+
