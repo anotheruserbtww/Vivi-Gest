@@ -147,13 +147,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VisitanteController.cs" />
     <Compile Include="Dtos\usuariosDto.cs" />
+    <Compile Include="Dtos\VisitanteDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UsuarioReposiyoty.cs" />
+    <Compile Include="Repositories\VisitanteRepository.cs" />
     <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="Services\VisitanteService.cs" />
     <Compile Include="utilities\AuthorizeRoleAttribute.cs" />
     <Compile Include="utilities\DBContextUtility.cs" />
     <Compile Include="utilities\EmailConfigUtility.cs" />
@@ -231,6 +235,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuario\create.cshtml" />
     <Content Include="Views\Home\carlos.cshtml" />
+    <Content Include="Views\Visitante\Index.cshtml" />
+    <Content Include="Views\Visitante\Create.cshtml" />
+    <Content Include="Views\Visitante\Edit.cshtml" />
+    <Content Include="Views\Visitante\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
