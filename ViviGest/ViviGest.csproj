@@ -168,9 +168,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap-datepicker.min.css" />
+    <Content Include="Content\css\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\icomoon.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\owl.theme.default.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\themify-icons.css" />
     <Content Include="Content\images\about-img.jpg" />
     <Content Include="Content\images\client.png" />
     <Content Include="Content\images\facebook.png" />
@@ -190,12 +199,14 @@
     <Content Include="Content\images\s-4.jpg" />
     <Content Include="Content\images\search-icon.png" />
     <Content Include="Content\images\slider-img.jpg" />
+    <Content Include="Content\images\slider.png" />
     <Content Include="Content\images\telephone.png" />
     <Content Include="Content\images\twitter.png" />
     <Content Include="Content\images\w-1.png" />
     <Content Include="Content\images\w-2.png" />
     <Content Include="Content\images\w-3.png" />
     <Content Include="Content\images\w-4.png" />
+    <Content Include="Content\images\w-5.png" />
     <Content Include="Content\images\worker.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\jquery-3.4.1.min.js" />
@@ -208,6 +219,7 @@
     <Content Include="Content\css\style.css.map" />
     <Content Include="Content\css\style.scss" />
     <Content Include="log4net.config" />
+    <Content Include="Content\css\bootstrap.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -239,6 +251,8 @@
     <Content Include="Views\Visitante\Create.cshtml" />
     <Content Include="Views\Visitante\Edit.cshtml" />
     <Content Include="Views\Visitante\Delete.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

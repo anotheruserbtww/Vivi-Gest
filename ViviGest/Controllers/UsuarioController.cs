@@ -3,7 +3,7 @@ using ViviGest.Services;
 using System;
 using System.Web.Mvc;
 
-namespace GastroByte.Controllers
+namespace ViviGest.Controllers
 {
     public class UsuarioController : Controller
     {

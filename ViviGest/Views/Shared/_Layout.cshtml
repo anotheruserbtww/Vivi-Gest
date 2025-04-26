@@ -1,7 +1,7 @@
 ﻿<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +9,50 @@
 
     <!-- Render de los archivos CSS -->
     @Styles.Render("~/Content/css")
+    <!-- Puedes agregar un enlace directo a tu archivo CSS -->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css">
+
     <!-- Render de los scripts, si es necesario -->
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Navbar con fondo negro sólido -->
+    <div class="navbar navbar-expand-lg navbar-dark" style="background-color: #1f1f1f;">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+            <!-- Logo y nombre -->
+            <a class="navbar-brand" href="#">
+                ViviGest
+            </a>
+            <!-- Botón de menú en dispositivos móviles -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Elementos del menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactenos</a>
+                    </li>
+                    <!-- Icono de búsqueda -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </li>
+                    <!-- Login -->
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white" href="@Url.Action("Login", "Usuario")">Login</a>
+                    </li>
                 </ul>
             </div>
         </div>
