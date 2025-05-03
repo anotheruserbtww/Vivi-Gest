@@ -21,8 +21,7 @@ namespace ViviGest.Repositories
             DBContextUtility connection = new DBContextUtility();
             connection.Connect();
 
-            // Encriptar la contraseña si no lo has hecho antes
-            user.contrasena = BCrypt.Net.BCrypt.HashPassword(user.contrasena);
+          
 
             string SQL = "INSERT INTO vivigest.dbo.[usuarios] (numero_identificacion, tipo_documento, nombres, apellidos, telefono, correo_electronico, contrasena, id_rol) " +
                          "VALUES (@numero_identificacion, @tipo_documento, @nombres, @apellidos, @telefono, @correo_electronico, @contrasena, @id_rol);";
