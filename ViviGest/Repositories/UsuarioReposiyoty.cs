@@ -23,12 +23,12 @@ namespace ViviGest.Repositories
 
           
 
-            string SQL = "INSERT INTO vivigest.dbo.[usuarios] (numero_identificacion, tipo_documento, nombres, apellidos, telefono, correo_electronico, contrasena, id_rol) " +
+            string SQL = "INSERT INTO vivigest.dbo.[usuarios] (numero_documento, tipo_documento, nombres, apellidos, telefono, correo_electronico, contrasena, id_rol) " +
                          "VALUES (@numero_identificacion, @tipo_documento, @nombres, @apellidos, @telefono, @correo_electronico, @contrasena, @id_rol);";
 
             using (SqlCommand command = new SqlCommand(SQL, connection.CONN()))
             {
-                command.Parameters.AddWithValue("@numero_identificacion", user.numero_documento);
+                command.Parameters.AddWithValue("@numero_documento", user.numero_documento);
                 command.Parameters.AddWithValue("@tipo_documento", user.tipo_documento);
                 command.Parameters.AddWithValue("@nombres", user.nombres);
                 command.Parameters.AddWithValue("@apellidos", user.apellidos);
@@ -62,8 +62,8 @@ namespace ViviGest.Repositories
         public usuariosDto BuscarUsuarioPorNumeroDocumento(string numeroDocumento)
         {
             usuariosDto user = null;
-            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_identificacion, telefono, correo_electronico " +
-                         "FROM vivigest.dbo.[usuarios] WHERE numero_identificacion = @numero_identificacion";
+            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_documento, telefono, correo_electronico " +
+                         "FROM vivigest.dbo.[usuarios] WHERE numero_documento = @numero_documento";
             DBContextUtility connection = new DBContextUtility();
             connection.Connect();
 
@@ -71,7 +71,7 @@ namespace ViviGest.Repositories
             {
                 using (SqlCommand command = new SqlCommand(SQL, connection.CONN()))
                 {
-                    command.Parameters.AddWithValue("@numero_identificacion", numeroDocumento);
+                    command.Parameters.AddWithValue("@numero_documento", numeroDocumento);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -82,7 +82,7 @@ namespace ViviGest.Repositories
                                 nombres = reader["nombres"].ToString(),
                                 contrasena = reader["contrasena"].ToString(),
                                 id_rol = (int)reader["id_rol"],
-                                numero_documento = reader["numero_identificacion"].ToString(),
+                                numero_documento = reader["numero_documento"].ToString(),
                                 telefono = reader["telefono"].ToString(),
                                 correo = reader["correo_electronico"].ToString()
                             };
@@ -159,7 +159,7 @@ namespace ViviGest.Repositories
                                 id_usuario = (int)reader["id_usuario"],
                                 nombres = reader["nombres"].ToString(),
                                 apellidos = reader["apellidos"].ToString(),
-                                numero_documento = reader["numero_identificacion"].ToString(),
+                                numero_documento = reader["numero_documento"].ToString(),
                                 correo = reader["correo_electronico"].ToString(),
                                 id_rol = (int)reader["id_rol"],
                             });
