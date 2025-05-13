@@ -23,8 +23,11 @@ namespace ViviGest.Repositories
 
           
 
+
             string SQL = "INSERT INTO vivigest.dbo.[usuarios] (numero_documento, tipo_documento, nombres, apellidos, telefono, correo, contrasena, id_rol) " +
                          "VALUES (@numero_documento, @tipo_documento, @nombres, @apellidos, @telefono, @correo, @contrasena, @id_rol);";
+
+
 
             using (SqlCommand command = new SqlCommand(SQL, connection.CONN()))
             {
@@ -62,7 +65,8 @@ namespace ViviGest.Repositories
         public usuariosDto BuscarUsuarioPorNumeroDocumento(string numeroDocumento)
         {
             usuariosDto user = null;
-            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_documento, telefono, correo " +
+
+            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_documento, telefono, correo" +
                          "FROM vivigest.dbo.[usuarios] WHERE numero_documento = @numero_documento";
             DBContextUtility connection = new DBContextUtility();
             connection.Connect();
