@@ -66,15 +66,10 @@ namespace ViviGest.Controllers
                         default:
                             // Si el rol no coincide, redirige a una página genérica o de error
                             return RedirectToAction("Login", "Usuario");
-                    
-                    
-
-               
 
                 }
             }
-                else
-                {
+                else{
                     // Si las credenciales son incorrectas, muestra un mensaje de error
                     loginUser.Message = "Credenciales incorrectas. Inténtalo nuevamente.";
                     return View(loginUser); // Devuelve la vista con el mensaje de error

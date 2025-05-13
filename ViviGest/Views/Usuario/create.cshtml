@@ -37,7 +37,7 @@
             <div class="form-group row">
                 @Html.Label("Tipo de documento:", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.tipo_documento, new SelectList(new List<string> { "Cédula", "Pasaporte", "DNI" }), "Selecciona", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.tipo_documento, new SelectList(new List<string> { "Cédula", "Pasaporte", "Cédula de extranjería" }), "Selecciona", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.tipo_documento, "", new { @class = "text-danger" })
                 </div>
             </div>
