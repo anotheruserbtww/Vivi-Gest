@@ -66,7 +66,7 @@ namespace ViviGest.Repositories
         {
             usuariosDto user = null;
 
-            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_documento, telefono, correo" +
+            string SQL = "SELECT id_usuario, nombres, contrasena, id_rol, numero_documento, telefono, correo " +
                          "FROM vivigest.dbo.[usuarios] WHERE numero_documento = @numero_documento";
             DBContextUtility connection = new DBContextUtility();
             connection.Connect();

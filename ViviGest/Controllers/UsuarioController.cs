@@ -60,9 +60,9 @@ namespace ViviGest.Controllers
                         case 1:
                             return RedirectToAction("Index", "Administrador");
                         case 2:
-                            return RedirectToAction("Index", "Asistente");
+                            return RedirectToAction("Index", "Visitante");
                         case 3:
-                            return RedirectToAction("Index", "Cliente");
+                            return RedirectToAction("Index", "Visitante");
                         default:
                             // Si el rol no coincide, redirige a una página genérica o de error
                             return RedirectToAction("Login", "Usuario");

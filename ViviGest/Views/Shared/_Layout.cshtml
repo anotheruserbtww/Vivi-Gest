@@ -53,9 +53,25 @@
                         </a>
                     </li>
                     <!-- Login -->
+                    @{
+                        var isLoggedIn = Session["UserID"] != null;
+                    }
+
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="@Url.Action("Login", "Usuario")">Login</a>
+                        @if (isLoggedIn)
+                        {
+                            <a class="nav-link btn btn-danger text-white" href="@Url.Action("Logout", "Usuario")">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link btn btn-primary text-white" href="@Url.Action("Login", "Usuario")">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        }
                     </li>
+
                 </ul>
             </div>
         </div>
