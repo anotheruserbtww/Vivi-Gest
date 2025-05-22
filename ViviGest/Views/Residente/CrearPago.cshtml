@@ -1,0 +1,31 @@
+﻿@model ViviGest.Dtos.PagoDto
+
+@{
+    ViewBag.Title = "Crear Pago";
+}
+
+<h2>Crear Pago</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.monto)
+        @Html.TextBoxFor(m => m.monto, new { @class = "form-control", placeholder = "Monto a pagar" })
+        @Html.ValidationMessageFor(m => m.monto, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.metodo_pago)
+        @Html.TextBoxFor(m => m.metodo_pago, new { @class = "form-control", placeholder = "Método de pago" })
+        @Html.ValidationMessageFor(m => m.metodo_pago, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar Pago</button>
+}

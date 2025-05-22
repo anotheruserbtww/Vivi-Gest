@@ -1,51 +1,35 @@
 ﻿@model ViviGest.Dtos.usuariosDto
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // o el layout que uses
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="login-container">
-    <h4>Iniciar Sesión</h4>
-    <hr />
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+            <h4 class="text-center mb-4">Iniciar Sesión</h4>
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
-    @* Solo mostramos el alert si Model existe y Message no es vacío *@
-    @if (Model?.Message != null)
-    {
-        <div class="alert alert-danger">
-            @Model.Message
-        </div>
-    }
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.numero_documento, "Nº de documento")
+                @Html.EditorFor(m => m.numero_documento, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su número de documento" } })
+                @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger" })
+            </div>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group mb-4">
+                @Html.LabelFor(m => m.contrasena, "Contraseña")
+                @Html.PasswordFor(m => m.contrasena, new { @class = "form-control", placeholder = "Ingrese su contraseña" })
+                @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger" })
+            </div>
 
-    <div class="form-group row">
-        @Html.Label("Nº de documento:", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-sm-8">
-            @Html.EditorFor(model => model.numero_documento, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numero_documento, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
 
-    <div class="form-group row">
-        @Html.Label("Contraseña:", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-sm-8">
-            @Html.EditorFor(model => model.contrasena, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.contrasena, "", new { @class = "text-danger" })
+            <div class="text-center mt-3">
+                <p>¿No tienes una cuenta? <a href="@Url.Action("Create", "Usuario")">Regístrate aquí</a></p>
+            </div>
         </div>
     </div>
-
-    <div class="form-group row">
-        <div class="col-sm-12 text-center">
-            <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
-        </div>
-    </div>
-</div>
 }
-
-@* Botón para registro *@
-<div class="mt-3">
-    <p>
-        ¿No tienes una cuenta?
-        <a href="@Url.Action("Create", "Usuario")" class="btn btn-secondary ml-2">Regístrate aquí</a>
-    </p>
-</div>

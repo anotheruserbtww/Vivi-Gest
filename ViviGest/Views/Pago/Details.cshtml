@@ -1,0 +1,41 @@
+﻿@model ViviGest.Dtos.PagoDto
+@{
+    ViewBag.Title = "Detalle Pago #" + Model.id_pago;
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="container my-4">
+    <h2>Detalle Pago <small>#@Model.id_pago</small></h2>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            Datos del Residente
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Residente != null)
+            {
+                <p><strong>Nombre:</strong> @ViewBag.Residente.nombres @ViewBag.Residente.apellidos</p>
+                <p><strong>Documento:</strong> @ViewBag.Residente.numero_documento</p>
+                <p><strong>Correo:</strong> @ViewBag.Residente.correo_electronico</p>
+            }
+            else
+            {
+                <p class="text-warning">No se encontró información del residente.</p>
+            }
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            Datos del Pago
+        </div>
+        <div class="card-body">
+            <p><strong>Monto:</strong> @Model.monto.ToString("C")</p>
+            <p><strong>Método:</strong> @Model.metodo_pago</p>
+            <p><strong>Fecha de solicitud:</strong> @Model.fecha_pago.ToString("dd/MM/yyyy HH:mm")</p>
+            <p><strong>Estado:</strong> @Model.estado</p>
+        </div>
+    </div>
+
+    <a href="@Url.Action("Pendientes", "Pago")" class="btn btn-secondary">← Volver a pendientes</a>
+</div>

@@ -1,0 +1,31 @@
+﻿@model ViviGest.Dtos.PagoDto
+@{
+    ViewBag.Title = "Crear Pago";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="container my-4">
+    <h2>Crear Pago</h2>
+
+    @using (Html.BeginForm("Create", "Pago", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.id_residente, "ID Residente")
+            @Html.EditorFor(m => m.id_residente, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.id_residente, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.monto)
+            @Html.EditorFor(m => m.monto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.monto, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.metodo_pago)
+            @Html.EditorFor(m => m.metodo_pago, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.metodo_pago, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a href="@Url.Action("Pendientes","Pago")" class="btn btn-link">Cancelar</a>
+    }
+</div>

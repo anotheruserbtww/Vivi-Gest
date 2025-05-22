@@ -15,48 +15,43 @@ namespace ViviGest.Repositories
         // Configuración de log4net
         private static readonly ILog log = LogManager.GetLogger(typeof(UsuarioReposiyoty));
 
+
         public int CreateUser(usuariosDto user)
         {
-            int comando = 0;
-            DBContextUtility connection = new DBContextUtility();
-            connection.Connect();
-
-          
-
-            string SQL = "INSERT INTO vivigest.dbo.[usuarios] (numero_documento, tipo_documento, nombres, apellidos, telefono, correo_electronico, contrasena, id_rol) " +
-                         "VALUES (@numero_identificacion, @tipo_documento, @nombres, @apellidos, @telefono, @correo_electronico, @contrasena, @id_rol);";
-
-            using (SqlCommand command = new SqlCommand(SQL, connection.CONN()))
+            using (var conn = new DBContextUtility())
             {
-                command.Parameters.AddWithValue("@numero_documento", user.numero_documento);
-                command.Parameters.AddWithValue("@tipo_documento", user.tipo_documento);
-                command.Parameters.AddWithValue("@nombres", user.nombres);
-                command.Parameters.AddWithValue("@apellidos", user.apellidos);
-                command.Parameters.AddWithValue("@telefono", user.telefono);
-                command.Parameters.AddWithValue("@correo_electronico", user.correo);
-                command.Parameters.AddWithValue("@contrasena", user.contrasena);
-                command.Parameters.AddWithValue("@id_rol", user.id_rol);
+                conn.Connect();
+                var sql = @"
+          INSERT INTO vivigest.dbo.usuarios
+            (numero_documento, tipo_documento, nombres, apellidos,
+             telefono, correo_electronico, contrasena, id_rol)
+          VALUES
+            (@numero_documento, @tipo_documento, @nombres, @apellidos,
+             @telefono, @correo_electronico, @contrasena, @id_rol);
+        ";
 
-                try
+                using (var cmd = new SqlCommand(sql, conn.CONN()))
                 {
-                    comando = command.ExecuteNonQuery();
-                }
-                catch (SqlException sqlEx)
-                {
-                    log.Error($"Error SQL: {sqlEx.Message}");
-                }
-                catch (InvalidOperationException invalidOpEx)
-                {
-                    log.Error($"Error de operación: {invalidOpEx.Message}");
-                }
-                catch (Exception ex)
-                {
-                    log.Error($"Error general: {ex.Message}");
+                    cmd.Parameters.AddWithValue("@numero_documento", user.numero_documento);
+                    cmd.Parameters.AddWithValue("@tipo_documento", user.tipo_documento);
+                    cmd.Parameters.AddWithValue("@nombres", user.nombres);
+                    cmd.Parameters.AddWithValue("@apellidos", user.apellidos);
+                    cmd.Parameters.AddWithValue("@telefono", user.telefono);
+                    cmd.Parameters.AddWithValue("@correo_electronico", user.correo_electronico);
+                    cmd.Parameters.AddWithValue("@contrasena", user.contrasena);
+                    cmd.Parameters.AddWithValue("@id_rol", user.id_rol);
+
+                    try
+                    {
+                        return cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        // Propaga la excepción con detalle
+                        throw new Exception("Error SQL al insertar usuario: " + ex.Message, ex);
+                    }
                 }
             }
-
-            connection.Disconnect();
-            return comando;
         }
 
         public usuariosDto BuscarUsuarioPorNumeroDocumento(string numeroDocumento)
@@ -84,7 +79,7 @@ namespace ViviGest.Repositories
                                 id_rol = (int)reader["id_rol"],
                                 numero_documento = reader["numero_documento"].ToString(),
                                 telefono = reader["telefono"].ToString(),
-                                correo = reader["correo_electronico"].ToString()
+                                correo_electronico = reader["correo_electronico"].ToString()
                             };
                         }
                     }
@@ -160,7 +155,7 @@ namespace ViviGest.Repositories
                                 nombres = reader["nombres"].ToString(),
                                 apellidos = reader["apellidos"].ToString(),
                                 numero_documento = reader["numero_documento"].ToString(),
-                                correo = reader["correo_electronico"].ToString(),
+                                correo_electronico = reader["correo_electronico"].ToString(),
                                 id_rol = (int)reader["id_rol"],
                             });
                         }

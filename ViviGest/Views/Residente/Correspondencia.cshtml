@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ViviGest.Dtos.CorrespondenciaDto>
+
+<h2>Correspondencia Pendiente</h2>
+
+@if (!Model.Any())
+{
+    <p>No tienes correspondencia pendiente.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Número Apartamento</th>
+                <th>Remitente</th>
+                <th>Fecha Recepción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.tipo_correspondencia</td>
+                    <td>@item.numero_apartamento</td>
+                    <td>@item.remitente</td>
+                    <td>@item.fecha_recepcion.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.estado</td>
+                    <td>
+                        @if(item.estado == "Pendiente")
+                        {
+                            using (Html.BeginForm("MarcarEntregado", "Residente", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("idCorrespondencia", item.id_correspondencia)
+                                <button type="submit" class="btn btn-success btn-sm">Marcar Entregado</button>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-success">Entregado</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ViviGest.Dtos.PagoDto>
+
+@{
+    ViewBag.Title = "Mis Pagos";
+}
+
+<h2>Mis Pagos</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID Pago</th>
+            <th>Monto</th>
+            <th>Método de Pago</th>
+            <th>Fecha de Pago</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center">No tienes pagos registrados.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var pago in Model)
+            {
+                <tr>
+                    <td>@pago.id_pago</td>
+                    <td>@pago.monto.ToString("C2")</td>
+                    <td>@pago.metodo_pago</td>
+                    <td>@pago.fecha_pago.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        @if (pago.estado == "Pendiente")
+                        {
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        }
+                        else if (pago.estado == "Pagado")
+                        {
+                            <span class="badge bg-success">Pagado</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@pago.estado</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

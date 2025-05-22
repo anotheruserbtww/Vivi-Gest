@@ -1,37 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
-namespace  ViviGest.Utilities
+namespace ViviGest.Utilities
 {
-    public class DBContextUtility
+    public class DBContextUtility : IDisposable
     {
-        static string SERVER = "CHARLIE";
-        static string DB_NAME = "vivigest";
-        static string DB_USER = "vivigest";
-        static string DB_PASSWORD = "vivigest" +
-            "" +
-            "" +
-            "";
+        private const string SERVER = "CHARLIE";
+        private const string DB_NAME = "vivigest";
+        private const string DB_USER = "vivigest1";
+        private const string DB_PASSWORD = "vivigest";
 
-        static string Conn = "server=" + SERVER + ";database=" + DB_NAME + ";user id=" + DB_USER + ";password=" + DB_PASSWORD + ";MultipleActiveResultSets=true";
-        //mi conexion:
-        SqlConnection Con = new SqlConnection(Conn);
+        private static readonly string ConnString =
+            $"server={SERVER};database={DB_NAME};user id={DB_USER};password={DB_PASSWORD};MultipleActiveResultSets=true";
 
-        //procedimiento que abre la conexion sqlsever
+        private SqlConnection _connection;
+
+        public DBContextUtility()
+        {
+            _connection = new SqlConnection(ConnString);
+        }
+
+        /// <summary>Abre la conexión.</summary>
         public bool Connect()
         {
             try
             {
-                Con.Open();
-                return true;  // Retorna true si la conexión fue exitosa
+                _connection.Open();
+                return true;
             }
             catch (SqlException ex)
             {
                 Console.WriteLine($"SQL Error: {ex.Message}");
-                return false;  // Retorna false si hubo algún error
+                return false;
             }
             catch (Exception ex)
             {
@@ -39,16 +39,25 @@ namespace  ViviGest.Utilities
                 return false;
             }
         }
-        //procedimiento que cierra la conexion sqlserver
+
+        /// <summary>Cierra la conexión.</summary>
         public void Disconnect()
         {
-            Con.Close();
+            if (_connection.State != System.Data.ConnectionState.Closed)
+                _connection.Close();
         }
 
-        //funcion que devuelve la conexion sqlserver
+        /// <summary>Retorna la instancia de SqlConnection.</summary>
         public SqlConnection CONN()
         {
-            return Con;
+            return _connection;
+        }
+
+        /// <summary>Implementación de IDisposable para usar 'using'.</summary>
+        public void Dispose()
+        {
+            Disconnect();
+            _connection.Dispose();
         }
     }
 }

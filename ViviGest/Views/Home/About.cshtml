@@ -12,3 +12,13 @@ else
 {
     <h2 style="color:red;">@ViewBag.ConnectionStatus</h2>
 }
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<a href="@Url.Action("EnviarComprobantePagoTest", "Administrador")" class="btn btn-primary">Probar Envío de Comprobante</a>

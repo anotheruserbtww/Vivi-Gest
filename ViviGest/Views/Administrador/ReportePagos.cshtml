@@ -1,0 +1,37 @@
+﻿@using System
+@{
+    ViewBag.Title = "Reporte de Pagos";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="container my-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+      <h5>Generar Reporte de Pagos (PDF)</h5>
+    </div>
+    <div class="card-body">
+      @if (TempData["Error"] != null)
+      {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+      }
+
+      @using (Html.BeginForm("GenerarReportePagos","Administrador",FormMethod.Post,new { @class="row g-3" }))
+      {
+        @Html.AntiForgeryToken()
+        <div class="col-md-6">
+          <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+          <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required />
+        </div>
+        <div class="col-md-6">
+          <label for="fechaFin" class="form-label">Fecha Fin</label>
+          <input type="date" id="fechaFin" name="fechaFin" class="form-control" required />
+        </div>
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-file-pdf"></i> Generar PDF
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

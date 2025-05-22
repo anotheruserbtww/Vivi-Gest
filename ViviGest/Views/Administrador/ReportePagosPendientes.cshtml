@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ViviGest.Dtos.PagoDto>
+@{
+    ViewBag.Title = "Pagos Pendientes";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5>Pagos Pendientes</h5>
+        </div>
+        <div class="card-body">
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+
+            <table class="table table-striped table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID Pago</th>
+                        <th>Residente</th>
+                        <th>Monto</th>
+                        <th>Método</th>
+                        <th>Fecha</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pago in Model)
+                    {
+                        <tr>
+                            <td>@pago.id_pago</td>
+                            <td>@pago.id_residente</td>
+                            <td>@pago.monto.ToString("C2")</td>
+                            <td>@pago.metodo_pago</td>
+                            <td>@pago.fecha_pago.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                @using (Html.BeginForm("ConfirmarPago", "Administrador", FormMethod.Post, new { @class = "d-inline" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("idPago", pago.id_pago)
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check-circle"></i> Confirmar
+                                    </button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

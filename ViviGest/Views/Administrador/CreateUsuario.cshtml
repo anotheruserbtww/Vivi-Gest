@@ -1,0 +1,104 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Crear Nuevo Usuario";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2 class="text-center mb-4">Crear Nuevo Usuario</h2>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal mx-auto" style="max-width: 600px;">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.nombres, "Nombres:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.nombres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nombres, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.apellidos, "Apellidos:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.apellidos, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.apellidos, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.tipo_documento, "Tipo de documento:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.DropDownListFor(model => model.tipo_documento,
+                        new SelectList(new List<string> { "Cédula", "Pasaporte", "DNI" }),
+                        "Selecciona",
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.tipo_documento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.numero_documento, "Nº de documento:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.numero_documento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.numero_documento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.telefono, "Teléfono:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.correo_electronico, "Correo Electrónico:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.correo_electronico, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.correo_electronico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-3">
+                @Html.LabelFor(model => model.contrasena, "Contraseña:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.contrasena, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.contrasena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row mb-4">
+                @Html.LabelFor(model => model.id_rol, "Tipo de rol:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
+                <div class="col-sm-8">
+                    @Html.DropDownListFor(
+                        model => model.id_rol,
+                        new SelectList(new List<SelectListItem> {
+                            new SelectListItem { Text = "Administrador", Value = "3" },
+                            new SelectListItem { Text = "Guarda", Value = "2" },
+                            new SelectListItem { Text = "Residente", Value = "1" }
+                        }, "Value", "Text"),
+                        "Selecciona",
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_rol, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="offset-sm-4 col-sm-8 d-flex gap-2">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                    <a href="@Url.Action("IndexUsuario", "Administrador")" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

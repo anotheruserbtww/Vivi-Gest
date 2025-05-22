@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - ViviGest</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            padding-top: 70px; /* espacio para navbar fijo */
+        }
+
+        .navbar {
+            background-color: #1f1f1f !important;
+        }
+
+        .nav-link.btn.btn-primary {
+            background-color: #1f1f1f !important;
+            color: white !important;
+            border: none !important;
+        }
+
+            .nav-link.btn.btn-primary:hover {
+                background-color: #333 !important;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="margin-top: -70px;">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Administrador")">ViviGest Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminNavbar"
+                    aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="adminNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Aquí cambié ml-auto por ms-auto para Bootstrap 5 -->
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("IndexUsuario", "Administrador")">Usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("CreateUsuario", "Administrador")">Crear Usuario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("ReportePagos", "Administrador")">Reportes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("ReportePagosPendientes", "Administrador")">Facturación</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger" href="@Url.Action("Logout", "Admin")">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content mt-4">
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - ViviGest Panel Admin</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

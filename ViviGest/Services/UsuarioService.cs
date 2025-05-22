@@ -16,7 +16,6 @@ namespace ViviGest.Services
             UsuarioReposiyoty userReposiyoty = new UsuarioReposiyoty();
             try
             {
-                // Primero, verifica si la contraseña es válida (no vacía)
                 if (string.IsNullOrEmpty(userModel.contrasena))
                 {
                     responseUserDto.Response = 0;
@@ -86,7 +85,7 @@ namespace ViviGest.Services
                     responseUserDto.id_rol = storedUser.id_rol; // Asigna el rol
                     responseUserDto.numero_documento = storedUser.numero_documento;
                     responseUserDto.telefono = storedUser.telefono;
-                    responseUserDto.correo = storedUser.correo;
+                    responseUserDto.correo_electronico = storedUser.correo_electronico;
                 }
                 else
                 {

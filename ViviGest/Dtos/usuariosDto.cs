@@ -30,14 +30,16 @@ namespace ViviGest.Dtos
 
         [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
         [EmailAddress(ErrorMessage = "Debe ser un correo electrónico válido.")]
-        public string correo { get; set; } = string.Empty;
+        public string correo_electronico { get; set; } = string.Empty;
 
 
         [Required(ErrorMessage = "La contraseña es obligatoria.")]
         [DataType(DataType.Password)]
         public string contrasena { get; set; } = string.Empty;
+        public string StoredHash { get; set; }
 
-       
+
+
         public int Response { get; set; }
         public string Message { get; set; } = string.Empty;
         public int id_rol { get; set; }

@@ -1,0 +1,42 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Panel de Administración";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+
+    var nombreCompleto = $"{Model.nombres} {Model.apellidos}";
+    var correo = Model.correo_electronico ?? "No disponible";
+    var rol = Model.id_rol == 1 ? "Administrador" : "Usuario"; // Ajusta según tus roles reales
+}
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1>Bienvenido, @nombreCompleto!</h1>
+        <p class="lead text-muted">
+            Este es tu panel de administración donde puedes gestionar usuarios, ver reportes y controlar la plataforma ViviGest.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <h4 class="mb-3">Tu Información</h4>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item"><strong>Nombre completo:</strong> @nombreCompleto</li>
+                    <li class="list-group-item"><strong>Rol:</strong> @rol</li>
+                    <li class="list-group-item"><strong>Correo:</strong> @correo</li>
+                    <li class="list-group-item"><strong>Número de documento:</strong> @Model.numero_documento</li>
+                </ul>
+
+                <div class="d-flex justify-content-around">
+                    <a href="@Url.Action("ReportePagosPendientes", "Administrador")" class="btn btn-warning">
+                        <i class="fa fa-clock me-2"></i> Pagos Pendientes
+                    </a>
+                    <a href="@Url.Action("ReportePagos", "Administrador")" class="btn btn-info">
+                        <i class="fa fa-file-pdf me-2"></i> Reporte PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
