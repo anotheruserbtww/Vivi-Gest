@@ -21,17 +21,11 @@ namespace ViviGest.Repositories
             using (var conn = new DBContextUtility())
             {
                 conn.Connect();
-                var sql = @"
-          INSERT INTO vivigest.dbo.usuarios
-            (numero_documento, tipo_documento, nombres, apellidos,
-             telefono, correo_electronico, contrasena, id_rol)
-          VALUES
-            (@numero_documento, @tipo_documento, @nombres, @apellidos,
-             @telefono, @correo_electronico, @contrasena, @id_rol);
-        ";
-
-                using (var cmd = new SqlCommand(sql, conn.CONN()))
+                using (var cmd = new SqlCommand("dbo.sp_CrearUsuario", conn.CONN()))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                   
                     cmd.Parameters.AddWithValue("@numero_documento", user.numero_documento);
                     cmd.Parameters.AddWithValue("@tipo_documento", user.tipo_documento);
                     cmd.Parameters.AddWithValue("@nombres", user.nombres);
@@ -47,12 +41,12 @@ namespace ViviGest.Repositories
                     }
                     catch (SqlException ex)
                     {
-                        // Propaga la excepción con detalle
-                        throw new Exception("Error SQL al insertar usuario: " + ex.Message, ex);
+                        throw new Exception("Error SQL al insertar usuario (SP): " + ex.Message, ex);
                     }
                 }
             }
         }
+
 
         public usuariosDto BuscarUsuarioPorNumeroDocumento(string numeroDocumento)
         {

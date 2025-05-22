@@ -49,7 +49,7 @@ namespace ViviGest.Utilities
                 doc.Open();
 
                 // Logo centrado arriba
-                var logoPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/"), "logo.jpg");
+                var logoPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/"), "logo.png");
                 if (File.Exists(logoPath))
                 {
                     var logo = Image.GetInstance(logoPath);
