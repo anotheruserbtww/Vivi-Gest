@@ -58,11 +58,11 @@ namespace ViviGest.Controllers
                     switch (userResponse.id_rol)
                     {
                         case 1:
-                            return RedirectToAction("Index", "Administrador");
+                            return RedirectToAction("Index", "Residente");
                         case 2:
                             return RedirectToAction("Index", "Visitante");
                         case 3:
-                            return RedirectToAction("Index", "Visitante");
+                            return RedirectToAction("Index", "Administrador");
                         default:
                             // Si el rol no coincide, redirige a una página genérica o de error
                             return RedirectToAction("Login", "Usuario");

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ViviGest.Services;
 using ViviGest.Repositories;
 using ViviGest.Dtos;
+using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
@@ -19,6 +20,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: /Pago/Pendientes
+        [AuthorizeRole(3)]
         public ActionResult Pendientes()
         {
             var pendientes = _PagoService.ObtenerPagosPendientes();
@@ -26,6 +28,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: /Pago/Detalle/5
+        [AuthorizeRole(3)]
         public ActionResult Detalle(int id)
         {
             var pago = _PagoService.ObtenerTodosLosPagos().FirstOrDefault(p => p.id_pago == id);
@@ -37,6 +40,7 @@ namespace ViviGest.Controllers
         }
 
         // POST: /Pago/Confirmar/5
+        [AuthorizeRole(3)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Confirmar(int id)
@@ -54,6 +58,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: /Pago/Create
+        [AuthorizeRole(3)]
         public ActionResult Create()
         {
             // si tienes un ViewModel para crear pagos, lo cargas aquí
@@ -61,6 +66,7 @@ namespace ViviGest.Controllers
         }
 
         // POST: /Pago/Create
+        [AuthorizeRole(3)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PagoDto dto)

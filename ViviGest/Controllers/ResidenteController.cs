@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using ViviGest.Dtos;
 using ViviGest.Repositories;
 using ViviGest.Services;
+using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
@@ -119,8 +120,13 @@ namespace ViviGest.Controllers
         // GET: Residente
         public ActionResult Index()
         {
-                var residentes = _residenteService.ObtenerTodos();
-            return View(residentes);
+            if (Session["UserID"] == null)
+                return RedirectToAction("Login", "Usuario");
+
+            int idResidente = (int)Session["UserID"];
+            var correspondencia = _correspondenciaService.ObtenerCorrespondenciaPorUsuario(idResidente).ToList();
+
+            return View(correspondencia);
         }
 
         // GET: Residente/Details/5
@@ -134,12 +140,14 @@ namespace ViviGest.Controllers
         }
 
         // GET: Residente/Create
+        [AuthorizeRole(3)]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Residente/Create
+        [AuthorizeRole(3)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(usuariosDto residente)
@@ -155,6 +163,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: Residente/Edit/5
+        [AuthorizeRole(3)]
         public ActionResult Edit(int id_usuario)
         {
             var residente = _residenteService.ObtenerPorId(id_usuario);
@@ -165,6 +174,7 @@ namespace ViviGest.Controllers
         }
 
         // POST: Residente/Edit/5
+        [AuthorizeRole(3)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(usuariosDto residente)
@@ -180,6 +190,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: Residente/Delete/5
+        [AuthorizeRole(3)]
         public ActionResult Delete(int id)
         {
             var residente = _residenteService.ObtenerPorId(id);
@@ -190,6 +201,7 @@ namespace ViviGest.Controllers
         }
 
         // POST: Residente/Delete/5
+        [AuthorizeRole(3)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

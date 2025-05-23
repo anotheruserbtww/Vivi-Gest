@@ -41,16 +41,20 @@
             </div>
         </div>
 
-        <!-- Sección de Confirmación -->
-        <div class="mt-4 d-flex justify-content-between">
-            <button type="submit" class="btn btn-danger btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Eliminar permanentemente" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
-                <i class="fas fa-trash-alt me-2"></i> Eliminar
-            </button>
+        @using (Html.BeginForm("Delete", "Visitante", new { id_visitante = Model.id_visitante }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="mt-4 d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Eliminar permanentemente" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                    <i class="fas fa-trash-alt me-2"></i> Eliminar
+                </button>
 
-            <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Cancelar y volver al listado" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
-                <i class="fas fa-times me-2"></i> Cancelar
-            </a>
-        </div>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Cancelar y volver al listado" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                    <i class="fas fa-times me-2"></i> Cancelar
+                </a>
+            </div>
+        }
+
     </div>
 </div>
 

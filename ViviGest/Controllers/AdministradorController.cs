@@ -11,6 +11,7 @@ using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
+    [AuthorizeRole(3)]
     public class AdministradorController : Controller
     {
         private readonly UsuarioService _usuarioService;

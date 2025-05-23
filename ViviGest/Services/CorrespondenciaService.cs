@@ -21,5 +21,16 @@ namespace ViviGest.Services
 
         public bool RegistrarCorrespondencia(CorrespondenciaDto dto)
             => _repo.InsertCorrespondencia(dto) > 0;
+        public IEnumerable<CorrespondenciaDto> ObtenerTodasCorrespondencias()
+    => _repo.GetTodasCorrespondencias();
+
+        public CorrespondenciaDto ObtenerCorrespondenciaPorId(int idCorrespondencia)
+    => _repo.GetCorrespondenciaPorId(idCorrespondencia);
+
+        public bool ActualizarCorrespondencia(CorrespondenciaDto dto)
+            => _repo.UpdateCorrespondencia(dto) > 0;
+        public bool EliminarCorrespondencia(int idCorrespondencia)
+    => _repo.DeleteCorrespondencia(idCorrespondencia) > 0;
+
     }
 }

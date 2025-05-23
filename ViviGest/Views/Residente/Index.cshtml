@@ -1,42 +1,54 @@
-﻿@model IEnumerable<ViviGest.Dtos.usuariosDto>
+﻿@model IEnumerable<ViviGest.Dtos.CorrespondenciaDto>
 
 @{
-    ViewBag.Title = "Lista de Residentes";
-    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+    ViewBag.Title = "Mis Paquetes y Correspondencia";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // o el layout que uses para residente
 }
 
-<h2>Lista de Residentes</h2>
+<h2 class="mb-4">Mis Paquetes y Correspondencia</h2>
 
-<a href="@Url.Action("Create")" class="btn btn-primary mb-3">Crear Nuevo Residente</a>
-
-<table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Número Documento</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var r in Model)
-        {
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No tienes paquetes o correspondencia pendiente.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <td>@r.id_usuario</td>
-                <td>@r.nombres</td>
-                <td>@r.apellidos</td>
-                <td>@r.numero_documento</td>
-                <td>@r.correo_electronico</td>
-                <td>@r.telefono</td>
-                <td>
-                    <a href="@Url.Action("Details", new { id = r.id_usuario })" class="btn btn-info btn-sm">Ver</a>
-                    <a href="@Url.Action("Edit", new { id = r.id_usuario })" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="@Url.Action("Delete", new { id = r.id_usuario })" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
+                <th>Tipo</th>
+                <th>Remitente</th>
+                <th>Apartamento</th>
+                <th>Fecha de Recepción</th>
+                <th>Estado</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.tipo_correspondencia</td>
+                    <td>@item.remitente</td>
+                    <td>@item.numero_apartamento</td>
+                    <td>@item.fecha_recepcion.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        @if (item.estado == "Pendiente")
+                        {
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        }
+                        else if (item.estado == "Entregado")
+                        {
+                            <span class="badge bg-success">Entregado</span>
+                        }
+                        else
+                        {
+                            @item.estado
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

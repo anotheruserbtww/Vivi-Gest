@@ -146,6 +146,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\CorrespondenciaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\ResidenteController.cs" />
@@ -215,6 +216,10 @@
     <Content Include="Views\Residente\CrearPago.cshtml" />
     <Content Include="Views\Residente\MisPagos.cshtml" />
     <Content Include="Views\Residente\Correspondencia.cshtml" />
+    <Content Include="Views\Correspondencia\Index.cshtml" />
+    <Content Include="Views\Correspondencia\Create.cshtml" />
+    <Content Include="Views\Correspondencia\Edit.cshtml" />
+    <Content Include="Views\Correspondencia\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
