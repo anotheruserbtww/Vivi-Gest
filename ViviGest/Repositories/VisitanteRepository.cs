@@ -33,7 +33,7 @@ namespace ViviGest.Repositories
                         tipo_documento = reader["tipo_documento"].ToString(),
                         numero_documento = reader["numero_documento"].ToString(),
                         destino = reader["destino"].ToString(),
-                        
+
                     });
                 }
                 reader.Close();
@@ -80,29 +80,24 @@ namespace ViviGest.Repositories
 
         public int Create(VisitanteDto v)
         {
-            using (var conn = db)   // db es tu DBContextUtility
+            SqlConnection conn = db.CONN();
+            SqlCommand cmd = new SqlCommand("INSERT INTO visitantes (nombre_completo, tipo_documento, numero_documento, destino) VALUES (@nombre_completo, @tipo_documento, @numero_documento, @destino)", conn);
+
+            cmd.Parameters.AddWithValue("@nombre_completo", v.nombre_completo);
+            cmd.Parameters.AddWithValue("@tipo_documento", v.tipo_documento);
+            cmd.Parameters.AddWithValue("@numero_documento", v.numero_documento);
+            cmd.Parameters.AddWithValue("@destino", v.destino);
+
+            try
             {
-                conn.Connect();
-                using (var cmd = new SqlCommand("dbo.sp_CrearVisitante", conn.CONN()))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre_completo", v.nombre_completo);
-                    cmd.Parameters.AddWithValue("@tipo_documento", v.tipo_documento);
-                    cmd.Parameters.AddWithValue("@numero_documento", v.numero_documento);
-                    cmd.Parameters.AddWithValue("@destino", v.destino);
-
-                    var outParam = new SqlParameter("@NuevoID", SqlDbType.Int)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(outParam);
-
-                    cmd.ExecuteNonQuery();
-                    return (int)outParam.Value;
-                }
+                db.Connect();
+                return cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.Disconnect();
             }
         }
-
 
         public int Update(VisitanteDto v)
         {
@@ -120,7 +115,7 @@ namespace ViviGest.Repositories
                 db.Connect();
                 return cmd.ExecuteNonQuery();
             }
-            finally 
+            finally
             {
                 db.Disconnect();
             }

@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using ViviGest.Dtos;
 using ViviGest.Services;
+using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
+    //[AuthorizeRole(1)]
     public class VisitanteController : Controller
     {
         private readonly VisitanteService _service = new VisitanteService();

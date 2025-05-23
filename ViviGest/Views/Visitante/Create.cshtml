@@ -5,50 +5,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <div class="card shadow p-4">
-        <h3 class="mb-4 text-primary">Registrar Nuevo Visitante</h3>
+<style>
 
-        @using (Html.BeginForm())
+    .card.shadow {
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .form-label-bs3 {
+        font-weight: bold;
+        color: #333333; /* Color estándar para etiquetas */
+        margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+    }
+
+    /* Contenedor para los botones del formulario */
+    .form-button-container-bs3 {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eeeeee; /* Línea separadora sutil */
+        text-align: right; /* Alinea los botones a la derecha */
+    }
+
+        .form-button-container-bs3 .btn {
+            margin-left: 8px;
+        }
+
+
+    .btn .fa {
+        margin-right: 6px;
+    }
+
+    /* Para asegurar que los mensajes de validación de MVC no rompan el layout */
+    .help-block {
+        margin-top: 3px;
+        font-size: 0.9em;
+    }
+</style>
+
+<div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+
+
+    <div class="card shadow" style="padding: 25px;">
+        <h3 style="margin-bottom: 25px; color: #337ab7; font-weight: bold;">Registrar Nuevo Visitante</h3>
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "visitanteForm" }))
         {
             @Html.AntiForgeryToken()
 
-            <div class="row mb-3">
+            <div class="row">
                 <div class="col-md-6">
-                    @Html.LabelFor(m => m.nombre_completo, htmlAttributes: new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(m => m.nombre_completo, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.nombre_completo, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @* form-group es clave en BS3 para el espaciado *@
+                        @Html.Label("Nombre completo", htmlAttributes: new { @class = "form-label-bs3 control-label" }) @* control-label para alineación correcta en BS3 *@
+                        @Html.TextBoxFor(m => m.nombre_completo, new { @class = "form-control", placeholder = "Ej: Ana Pérez García" })
+                        @Html.ValidationMessageFor(m => m.nombre_completo, "", new { @class = "text-danger help-block" })
+                    </div>
                 </div>
 
                 <div class="col-md-6">
-                    @Html.LabelFor(m => m.tipo_documento, htmlAttributes: new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(m => m.tipo_documento, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.tipo_documento, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Tipo de documento", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.DropDownListFor(m => m.tipo_documento,
+                            new SelectList(new List<SelectListItem> {
+                                new SelectListItem { Text = "Cédula de Ciudadanía", Value = "CC" },
+                                new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                                new SelectListItem { Text = "Cédula de Extranjería", Value = "CE" }
+                            }, "Value", "Text"),
+                            "Selecciona un tipo...",
+                            new { @class = "form-control" }) @* form-control también para selects en BS3 *@
+                            @Html.ValidationMessageFor(m => m.tipo_documento, "", new { @class = "text-danger help-block" })
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.numero_documento, htmlAttributes: new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("Número de documento", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                            @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control", placeholder = "Ej: 1020304050" })
+                            @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger help-block" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.destino, "Destino / Apartamento", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                            @Html.TextBoxFor(m => m.destino, new { @class = "form-control", placeholder = "Ej: Apto 101 / Oficina 302" })
+                            @Html.ValidationMessageFor(m => m.destino, "", new { @class = "text-danger help-block" })
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    @Html.LabelFor(m => m.destino, htmlAttributes: new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(m => m.destino, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.destino, "", new { @class = "text-danger" })
+                <div class="form-button-container-bs3">
+                    <a href="@Url.Action("Index")" class="btn btn-default">
+                        <i class="fa fa-arrow-left"></i>Volver
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>Guardar
+                    </button>
                 </div>
-            </div>
-
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Guardar
-                </button>
-                <a href="@Url.Action("Index")" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Volver
-                </a>
-            </div>
-        }
+            }
     </div>
 </div>
+
+

@@ -27,9 +27,9 @@ namespace ViviGest.Services
             return _residenteRepo.GetAllResidentes();
         }
 
-        public usuariosDto ObtenerPorId(int id)
+        public usuariosDto ObtenerPorId(int id_usuario)
         {
-            return _residenteRepo.GetResidenteById(id);
+            return _residenteRepo.GetResidenteById(id_usuario);
         }
 
         public bool ActualizarResidente(usuariosDto residente)

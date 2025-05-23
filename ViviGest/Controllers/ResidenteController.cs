@@ -155,9 +155,9 @@ namespace ViviGest.Controllers
         }
 
         // GET: Residente/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id_usuario)
         {
-            var residente = _residenteService.ObtenerPorId(id);
+            var residente = _residenteService.ObtenerPorId(id_usuario);
             if (residente == null)
                 return HttpNotFound();
 

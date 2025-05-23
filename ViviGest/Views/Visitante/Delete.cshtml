@@ -6,43 +6,51 @@
 }
 
 <div class="container mt-5">
-    <div class="card border-danger shadow p-4">
-        <h3 class="text-danger mb-4">
-            <i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación
+    <!-- Card with modern gradient and bold style -->
+    <div class="card border-danger shadow-xl rounded-4 p-5" style="background: linear-gradient(145deg, rgba(255, 87, 34, 0.1), rgba(233, 30, 99, 0.1));">
+        <h3 class="text-danger text-center mb-4">
+            <i class="fas fa-exclamation-triangle me-2"></i> ¡Atención! Confirmar Eliminación
         </h3>
 
-        <p class="lead">¿Estás seguro de que deseas eliminar este visitante? Esta acción no se puede deshacer.</p>
+        <p class="lead text-center text-warning mb-4">
+            <strong>Esta acción es irreversible. ¿Estás seguro de que deseas eliminar este visitante?</strong>
+        </p>
 
-        <div class="mb-4">
-            <dl class="row">
-                <dt class="col-sm-3 fw-bold">ID</dt>
-                <dd class="col-sm-9">@Model.id_visitante</dd>
+        <!-- Sección de Detalles -->
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mb-3">
+                <div class="card shadow-sm p-3">
+                    <h5 class="text-primary">Detalles del Visitante</h5>
+                    <dl class="row">
+                        <dt class="col-sm-5 fw-bold">ID Visitante</dt>
+                        <dd class="col-sm-7">@Model.id_visitante</dd>
 
-                <dt class="col-sm-3 fw-bold">Nombre Completo</dt>
-                <dd class="col-sm-9">@Model.nombre_completo</dd>
+                        <dt class="col-sm-5 fw-bold">Nombre Completo</dt>
+                        <dd class="col-sm-7">@Model.nombre_completo</dd>
 
-                <dt class="col-sm-3 fw-bold">Tipo Documento</dt>
-                <dd class="col-sm-9">@Model.tipo_documento</dd>
+                        <dt class="col-sm-5 fw-bold">Tipo de Documento</dt>
+                        <dd class="col-sm-7">@Model.tipo_documento</dd>
 
-                <dt class="col-sm-3 fw-bold">Número Documento</dt>
-                <dd class="col-sm-9">@Model.numero_documento</dd>
+                        <dt class="col-sm-5 fw-bold">Número de Documento</dt>
+                        <dd class="col-sm-7">@Model.numero_documento</dd>
 
-                <dt class="col-sm-3 fw-bold">Destino</dt>
-                <dd class="col-sm-9">@Model.destino</dd>
-            </dl>
+                        <dt class="col-sm-5 fw-bold">Destino</dt>
+                        <dd class="col-sm-7">@Model.destino</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
 
-        @using (Html.BeginForm("Delete", "Visitante", new { id_visitante = Model.id_visitante }, FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> Eliminar
-                </button>
-                <a href="@Url.Action("Index")" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Cancelar
-                </a>
-            </div>
-        }
+        <!-- Sección de Confirmación -->
+        <div class="mt-4 d-flex justify-content-between">
+            <button type="submit" class="btn btn-danger btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Eliminar permanentemente" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                <i class="fas fa-trash-alt me-2"></i> Eliminar
+            </button>
+
+            <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Cancelar y volver al listado" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                <i class="fas fa-times me-2"></i> Cancelar
+            </a>
+        </div>
     </div>
 </div>
+
