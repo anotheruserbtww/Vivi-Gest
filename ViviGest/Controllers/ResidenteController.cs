@@ -25,7 +25,7 @@ namespace ViviGest.Controllers
         }
 
 
-
+        [AuthorizeRole(1, 2)]
         public ActionResult Correspondencia()
         {
             int idUsuario = (int)Session["UserID"];
@@ -51,6 +51,7 @@ namespace ViviGest.Controllers
         }
 
         // POST: crear pago
+        [AuthorizeRole(1)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CrearPago(PagoDto pago)
@@ -99,6 +100,7 @@ namespace ViviGest.Controllers
         }
 
         // Listar pagos del residente
+        [AuthorizeRole(1)]
         public ActionResult MisPagos()
         {
             if (Session["UserID"] == null)
@@ -118,18 +120,23 @@ namespace ViviGest.Controllers
 
 
         // GET: Residente
+
+        [AuthorizeRole(1)]
         public ActionResult Index()
         {
             if (Session["UserID"] == null)
                 return RedirectToAction("Login", "Usuario");
 
             int idResidente = (int)Session["UserID"];
+
             var correspondencia = _correspondenciaService.ObtenerCorrespondenciaPorUsuario(idResidente).ToList();
 
             return View(correspondencia);
         }
 
         // GET: Residente/Details/5
+
+        [AuthorizeRole(1)]
         public ActionResult Details(int id)
         {
             var residente = _residenteService.ObtenerPorId(id);
@@ -139,31 +146,12 @@ namespace ViviGest.Controllers
             return View(residente);
         }
 
-        // GET: Residente/Create
-        [AuthorizeRole(3)]
-        public ActionResult Create()
-        {
-            return View();
-        }
+       
 
-        // POST: Residente/Create
-        [AuthorizeRole(3)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(usuariosDto residente)
-        {
-            if (ModelState.IsValid)
-            {
-                var id = _residenteService.CrearResidente(residente);
-                if (id > 0)
-                    return RedirectToAction("Index");
-                ModelState.AddModelError("", "No se pudo crear el residente.");
-            }
-            return View(residente);
-        }
+        
 
         // GET: Residente/Edit/5
-        [AuthorizeRole(3)]
+        [AuthorizeRole(1, 3)]
         public ActionResult Edit(int id_usuario)
         {
             var residente = _residenteService.ObtenerPorId(id_usuario);
@@ -173,8 +161,8 @@ namespace ViviGest.Controllers
             return View(residente);
         }
 
-        // POST: Residente/Edit/5
-        [AuthorizeRole(3)]
+        // POST: Residente/Edit/
+        [AuthorizeRole(1, 3)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(usuariosDto residente)
@@ -190,7 +178,7 @@ namespace ViviGest.Controllers
         }
 
         // GET: Residente/Delete/5
-        [AuthorizeRole(3)]
+        [AuthorizeRole(1, 3)]
         public ActionResult Delete(int id)
         {
             var residente = _residenteService.ObtenerPorId(id);

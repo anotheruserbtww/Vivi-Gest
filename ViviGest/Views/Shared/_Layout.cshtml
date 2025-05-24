@@ -19,14 +19,20 @@
             background-color: #1f1f1f !important;
         }
 
-        .nav-link.btn.btn-primary {
-            background-color: #1f1f1f !important;
+        /* Botón Login personalizado */
+        .nav-link.btn-login {
+            background-color: #ff4f5a !important;
             color: white !important;
             border: none !important;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
         }
 
-            .nav-link.btn.btn-primary:hover {
-                background-color: #333 !important;
+            .nav-link.btn-login:hover {
+                background-color: #e0434d !important;
+                color: white !important;
             }
     </style>
 </head>
@@ -41,13 +47,12 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contáctenos</a></li>
+                    <li class="nav-item"><a class="nav-link"href="@Url.Action("Index", "Home")">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">Acerca de</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")">Contáctenos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-search"></i></a></li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" href="@Url.Action("Login", "Usuario")">Login</a>
+                        <a class="nav-link btn-login" href="@Url.Action("Login", "Usuario")">Login</a>
                     </li>
                 </ul>
             </div>

@@ -1,0 +1,69 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Editar Usuario</h2>
+
+@using (Html.BeginForm("EditUsuario", "Administrador", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.id_usuario)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.numero_documento)
+        @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control", @readonly = "readonly" })
+        @* Número de documento no editable para evitar conflictos *@
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.tipo_documento)
+        @Html.TextBoxFor(m => m.tipo_documento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.tipo_documento, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.nombres)
+        @Html.TextBoxFor(m => m.nombres, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.nombres, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.apellidos)
+        @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.apellidos, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.telefono)
+        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.correo_electronico)
+        @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", type = "email" })
+        @Html.ValidationMessageFor(m => m.correo_electronico, "", new { @class = "text-danger" })
+    </div>
+
+  
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.id_rol)
+
+        @Html.DropDownListFor(
+            m => m.id_rol,
+            (SelectList)ViewBag.Roles,
+            "Seleccione un rol",
+            new { @class = "form-control" }
+        )
+        @Html.ValidationMessageFor(m => m.id_rol, "", new { @class = "text-danger" })
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a href="@Url.Action("IndexUsuario", "Administrador")" class="btn btn-secondary ml-2">Cancelar</a>
+}

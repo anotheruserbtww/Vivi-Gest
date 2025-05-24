@@ -1,29 +1,46 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using ViviGest.Dtos;
+using ViviGest.Repositories;
 using ViviGest.Services;
 using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
-    [AuthorizeRole(3,2)]
+    [AuthorizeRole(1,2)]
+
     public class CorrespondenciaController : Controller
     {
         private readonly CorrespondenciaService _service = new CorrespondenciaService();
+        private readonly ResidenteRepository residente; // campo privado
+
+        public CorrespondenciaController()
+        {
+            residente = new ResidenteRepository(); // instancia aquí
+        }
 
         // Listar correspondencia de un usuario
         public ActionResult Index()
         {
-            var lista = _service.ObtenerTodasCorrespondencias(); // Nuevo método para traer todo
+            var lista = _service.ObtenerTodasCorrespondencias();
             return View(lista);
         }
-
 
         // Mostrar formulario para crear correspondencia
         public ActionResult Create()
         {
+            var residentes = residente.GetAllResidentes(); // usa el campo privado
+
+            ViewBag.Residentes = residentes.Select(r => new SelectListItem
+            {
+                Value = r.id_usuario.ToString(),
+                Text = $"{r.nombres} {r.apellidos} - Numero de Identificacion: {r.numero_documento}"
+            }).ToList();
+
             return View(new CorrespondenciaDto());
         }
+
+
 
         // POST: Crear correspondencia
         [HttpPost]

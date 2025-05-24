@@ -10,6 +10,8 @@ namespace ViviGest.Services
 {
     public class UsuarioService
     {
+        private readonly UsuarioReposiyoty _repo = new UsuarioReposiyoty();
+
         public usuariosDto CreateUser(usuariosDto userModel)
         {
             usuariosDto responseUserDto = new usuariosDto();
@@ -53,11 +55,20 @@ namespace ViviGest.Services
             }
         }
 
+       
+
+        
+        public usuariosDto GetUsuario(int id)
+        {
+            return _repo.GetById(id);
+        }
+
         public IEnumerable<usuariosDto> GetAllUsuario()
         {
             UsuarioReposiyoty userReposiyoty = new UsuarioReposiyoty();
             return userReposiyoty.GetAllUsuarios(); // Esto ahora debería funcionar correctamente
         }
+        
 
         public usuariosDto LoginUser(usuariosDto loginUser)
         {
@@ -101,6 +112,7 @@ namespace ViviGest.Services
                 responseUserDto.Message = e.InnerException?.ToString() ?? e.Message;
                 return responseUserDto;
             }
+
         }
     }
 }

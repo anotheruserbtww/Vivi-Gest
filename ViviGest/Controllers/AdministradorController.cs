@@ -8,12 +8,14 @@ using ViviGest.Dtos;
 using ViviGest.Services;
 using ViviGest.Repositories;      // para PagoRepository, ResidenteRepository
 using ViviGest.Utilities;
+using System.Web.Services.Description;
 
 namespace ViviGest.Controllers
 {
     [AuthorizeRole(3)]
     public class AdministradorController : Controller
     {
+
         private readonly UsuarioService _usuarioService;
         private readonly PagoService _pagoService;
         private readonly EmailConfigUtility _emailUtil;
@@ -80,6 +82,9 @@ namespace ViviGest.Controllers
             ModelState.AddModelError("", resp.Message ?? "Error al crear el usuario.");
             return View(newUser);
         }
+
+        
+
 
         // ─── PAGOS PENDIENTES ────────────────────────────────────────────────
 
@@ -157,7 +162,7 @@ namespace ViviGest.Controllers
                 doc.Open();
 
                 // Logo
-                var logo = Image.GetInstance(Server.MapPath("~/Content/img/logo.jpg"));
+                var logo = Image.GetInstance(Server.MapPath("~/Content/images/logo.png"));
                 logo.ScaleAbsolute(100, 100);
                 logo.Alignment = Element.ALIGN_CENTER;
                 doc.Add(logo);

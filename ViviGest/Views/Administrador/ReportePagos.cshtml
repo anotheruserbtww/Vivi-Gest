@@ -4,34 +4,70 @@
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<div class="container my-4">
-  <div class="card shadow-sm">
-    <div class="card-header bg-info text-white">
-      <h5>Generar Reporte de Pagos (PDF)</h5>
-    </div>
-    <div class="card-body">
-      @if (TempData["Error"] != null)
-      {
-        <div class="alert alert-danger">@TempData["Error"]</div>
-      }
+<style>
+    .card-header {
+        background-color: #ff4f5a !important;
+        color: white !important;
+    }
 
-      @using (Html.BeginForm("GenerarReportePagos","Administrador",FormMethod.Post,new { @class="row g-3" }))
-      {
-        @Html.AntiForgeryToken()
-        <div class="col-md-6">
-          <label for="fechaInicio" class="form-label">Fecha Inicio</label>
-          <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required />
+    .btn-primary {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #e0434b !important;
+            border-color: #e0434b !important;
+        }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+
+    .form-control {
+        border-radius: 6px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5>Generar Reporte de Pagos (PDF)</h5>
         </div>
-        <div class="col-md-6">
-          <label for="fechaFin" class="form-label">Fecha Fin</label>
-          <input type="date" id="fechaFin" name="fechaFin" class="form-control" required />
+        <div class="card-body">
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            @using (Html.BeginForm("GenerarReportePagos", "Administrador", FormMethod.Post, new { @class = "row g-3" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-md-6">
+                    <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+                    <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                    <label for="fechaFin" class="form-label">Fecha Fin</label>
+                    <input type="date" id="fechaFin" name="fechaFin" class="form-control" required />
+                </div>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-file-pdf"></i> Generar PDF
+                    </button>
+                </div>
+            }
         </div>
-        <div class="col-12 text-end">
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-file-pdf"></i> Generar PDF
-          </button>
-        </div>
-      }
     </div>
-  </div>
 </div>

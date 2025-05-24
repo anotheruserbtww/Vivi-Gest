@@ -4,13 +4,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; // o el layout que uses
 }
 
+<style>
+    .btn-primary {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #e2434b !important;
+            border-color: #e2434b !important;
+        }
+
+    .form-group label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .text-danger {
+        font-size: 0.875rem;
+    }
+
+    a {
+        color: #ff4f5a;
+        font-weight: 600;
+    }
+
+        a:hover {
+            color: #e2434b;
+            text-decoration: underline;
+        }
+</style>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
         <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
-            <h4 class="text-center mb-4">Iniciar Sesión</h4>
+            <h4 class="text-center mb-4" style="color: #ff4f5a; font-weight: 700;">Iniciar Sesión</h4>
             @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
             <div class="form-group mb-3">

@@ -4,28 +4,34 @@
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<div class="container my-4">
-    <h2>Crear Pago</h2>
+<div class="container my-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-primary fw-bold">Crear Pago</h2>
 
     @using (Html.BeginForm("Create", "Pago", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <div class="form-group">
-            @Html.LabelFor(m => m.id_residente, "ID Residente")
-            @Html.EditorFor(m => m.id_residente, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.id_residente, "ID Residente", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.id_residente, new { @class = "form-control", placeholder = "Ej: 123", type = "number", min = "1" })
             @Html.ValidationMessageFor(m => m.id_residente, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.monto)
-            @Html.EditorFor(m => m.monto, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.monto, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.monto, new { @class = "form-control", placeholder = "Ej: 150000", type = "number", step = "0.01", min = "0" })
             @Html.ValidationMessageFor(m => m.monto, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.metodo_pago)
-            @Html.EditorFor(m => m.metodo_pago, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="mb-4">
+            @Html.LabelFor(m => m.metodo_pago, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.metodo_pago, new { @class = "form-control", placeholder = "Ej: Tarjeta de crédito" })
             @Html.ValidationMessageFor(m => m.metodo_pago, "", new { @class = "text-danger" })
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
-        <a href="@Url.Action("Pendientes","Pago")" class="btn btn-link">Cancelar</a>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary px-4">Crear</button>
+            <a href="@Url.Action("Pendientes", "Pago")" class="btn btn-link align-self-center">Cancelar</a>
+        </div>
     }
 </div>

@@ -5,8 +5,58 @@
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
+<style>
+    .btn-primary {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #e0434b !important;
+            border-color: #e0434b !important;
+        }
+
+    .table-dark {
+        background-color: #ff4f5a !important;
+        color: white !important;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        color: white !important;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e8e8e8 !important;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #ffffff;
+    }
+
+    .table td {
+        vertical-align: middle;
+        color: #333;
+    }
+
+    .table th, .table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .table .btn {
+        color: #fff;
+    }
+</style>
+
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Lista de Usuarios</h2>
+    <h2 class="mb-0" style="color: #ff4f5a; font-weight: 700;">Lista de Usuarios</h2>
     <a href="@Url.Action("CreateUsuario", "Administrador")" class="btn btn-primary">
         <i class="fa fa-plus me-2"></i> Crear Usuario
     </a>
@@ -22,7 +72,6 @@
                 <th>Documento</th>
                 <th>Correo electrónico</th>
                 <th>Rol</th>
-                <th class="text-center" style="width:120px;">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +84,6 @@
                     <td>@user.numero_documento</td>
                     <td>@user.correo_electronico</td>
                     <td>@user.id_rol</td>
-                    <td class="text-center">
-                        <a href="@Url.Action("Edit", "Residente", new { id = user.id_usuario })"
-                           class="btn btn-sm btn-warning me-1" title="Editar">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <a href="@Url.Action("DeleteUsuario", "Administrador", new { id = user.id_usuario })"
-                           class="btn btn-sm btn-danger" title="Eliminar"
-                           onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                    </td>
                 </tr>
             }
         </tbody>

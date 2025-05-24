@@ -5,7 +5,7 @@ namespace ViviGest.Utilities
 {
     public class DBContextUtility : IDisposable
     {
-        private const string SERVER = "LAPTOP-R455N33E";
+        private const string SERVER = "CHARLIE";
         private const string DB_NAME = "vivigest";
         private const string DB_USER = "vivigest1";
         private const string DB_PASSWORD = "vivigest";

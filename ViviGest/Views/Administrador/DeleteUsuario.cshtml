@@ -1,0 +1,27 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Eliminar Residente";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Eliminar Residente</h2>
+
+<h4>¿Está seguro que desea eliminar este residente?</h4>
+
+<table class="table table-bordered">
+    <tr><th>ID</th><td>@Model.id_usuario</td></tr>
+    <tr><th>Nombres</th><td>@Model.nombres</td></tr>
+    <tr><th>Apellidos</th><td>@Model.apellidos</td></tr>
+    <tr><th>Número Documento</th><td>@Model.numero_documento</td></tr>
+    <tr><th>Correo Electrónico</th><td>@Model.correo_electronico</td></tr>
+    <tr><th>Teléfono</th><td>@Model.telefono</td></tr>
+</table>
+
+@using (Html.BeginForm("DeleteConfirmed", "Residente", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id_usuario)
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+}

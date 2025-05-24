@@ -105,6 +105,8 @@ namespace ViviGest.Controllers
             return View(user);
         }
 
+
+
         // POST: Usuario/Create
         [HttpPost]
         public ActionResult Create(usuariosDto newUser)

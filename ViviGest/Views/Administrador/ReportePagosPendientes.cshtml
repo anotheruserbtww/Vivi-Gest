@@ -4,9 +4,68 @@
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
+<style>
+    .card-header {
+        background-color: #ff4f5a !important;
+        color: white !important;
+    }
+
+    .btn-success {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-success:hover {
+            background-color: #e0434b !important;
+            border-color: #e0434b !important;
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #ffffff;
+    }
+
+    .thead-light {
+        background-color: #ff4f5a;
+        color: white !important;
+        font-weight: 600;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+        padding: 12px 15px;
+    }
+
+    .table td {
+        color: #333;
+    }
+
+    .alert {
+        font-weight: 600;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+</style>
+
 <div class="container my-4">
     <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header">
             <h5>Pagos Pendientes</h5>
         </div>
         <div class="card-body">

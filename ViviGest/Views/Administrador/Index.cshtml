@@ -18,22 +18,27 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card shadow-sm p-4">
                 <h4 class="mb-3">Tu Información</h4>
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item"><strong>Nombre completo:</strong> @nombreCompleto</li>
-                    <li class="list-group-item"><strong>Rol:</strong> @rol</li>
                     <li class="list-group-item"><strong>Correo:</strong> @correo</li>
                     <li class="list-group-item"><strong>Número de documento:</strong> @Model.numero_documento</li>
                 </ul>
 
-                <div class="d-flex justify-content-around">
+                <div class="d-flex justify-content-around flex-wrap gap-2">
                     <a href="@Url.Action("ReportePagosPendientes", "Administrador")" class="btn btn-warning">
                         <i class="fa fa-clock me-2"></i> Pagos Pendientes
                     </a>
                     <a href="@Url.Action("ReportePagos", "Administrador")" class="btn btn-info">
                         <i class="fa fa-file-pdf me-2"></i> Reporte PDF
+                    </a>
+                    <a href="@Url.Action("CreateUsuario", "Administrador")" class="btn btn-success">
+                        <i class="fa fa-user-plus me-2"></i> Crear Usuario
+                    </a>
+                    <a href="@Url.Action("IndexUsuario", "Administrador")" class="btn btn-primary">
+                        <i class="fa fa-users me-2"></i> Lista de Usuarios
                     </a>
                 </div>
             </div>

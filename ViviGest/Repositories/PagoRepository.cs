@@ -13,7 +13,10 @@ namespace ViviGest.Repositories
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(PagoRepository));
 
+
         public int CreatePago(PagoDto pago)
+
+
         {
             using (var db = new DBContextUtility())
             {

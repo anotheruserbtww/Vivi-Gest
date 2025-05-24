@@ -2,12 +2,13 @@
 
 @{
     ViewBag.Title = "Mis Pagos";
+    Layout = "~/Views/Shared/_Layout_Residente.cshtml"; // o el layout que uses para residente
 }
 
-<h2>Mis Pagos</h2>
+<h2 class="mb-4" style="color: #ff4f5a; font-weight: 700;">Mis Pagos</h2>
 
 <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
+    <thead style="background-color: #ff4f5a; color: white; font-weight: 600;">
         <tr>
             <th>ID Pago</th>
             <th>Monto</th>
@@ -20,7 +21,7 @@
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="5" class="text-center">No tienes pagos registrados.</td>
+                <td colspan="5" class="text-center text-muted fst-italic">No tienes pagos registrados.</td>
             </tr>
         }
         else
@@ -35,15 +36,15 @@
                     <td>
                         @if (pago.estado == "Pendiente")
                         {
-                            <span class="badge bg-warning text-dark">Pendiente</span>
+                            <span class="badge" style="background-color: #ff4f5a; color: white; font-weight: 600;">Pendiente</span>
                         }
                         else if (pago.estado == "Pagado")
                         {
-                            <span class="badge bg-success">Pagado</span>
+                            <span class="badge bg-success" style="font-weight: 600;">Pagado</span>
                         }
                         else
                         {
-                            <span class="badge bg-secondary">@pago.estado</span>
+                            <span class="badge bg-secondary" style="font-weight: 600;">@pago.estado</span>
                         }
                     </td>
                 </tr>

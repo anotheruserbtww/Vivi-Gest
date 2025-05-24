@@ -1,39 +1,33 @@
 ﻿@model ViviGest.Dtos.CorrespondenciaDto
 
 @{
-    ViewBag.Title = "Crear Correspondencia";
+    ViewBag.Title = "Registrar Correspondencia";
 }
-
-<h2>Crear Correspondencia</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(m => m.destinatario)
-        @Html.TextBoxFor(m => m.destinatario, new { @class = "form-control" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.destinatario, "Seleccione Residente")
+        @Html.DropDownListFor(m => m.destinatario, ViewBag.Residentes as IEnumerable<SelectListItem>, "Seleccione...", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.destinatario)
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
         @Html.LabelFor(m => m.tipo_correspondencia)
         @Html.TextBoxFor(m => m.tipo_correspondencia, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.tipo_correspondencia)
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
         @Html.LabelFor(m => m.numero_apartamento)
         @Html.TextBoxFor(m => m.numero_apartamento, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.numero_apartamento)
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
         @Html.LabelFor(m => m.remitente)
         @Html.TextBoxFor(m => m.remitente, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.remitente)
     </div>
 
-    <button type="submit" class="btn btn-success">Guardar</button>
-    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary ms-2" })
+    <button type="submit" class="btn btn-primary">Registrar</button>
 }

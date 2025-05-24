@@ -11,7 +11,10 @@ using log4net;
 namespace ViviGest.Repositories
 {
     public class UsuarioReposiyoty
+
     {
+        private DBContextUtility db = new DBContextUtility();
+
         // Configuración de log4net
         private static readonly ILog log = LogManager.GetLogger(typeof(UsuarioReposiyoty));
 
@@ -46,6 +49,41 @@ namespace ViviGest.Repositories
                 }
             }
         }
+        public usuariosDto GetById(int id)
+        {
+            usuariosDto usuario = null;
+            const string sql = "SELECT * FROM usuarios WHERE id_usuario = @id";
+
+            using (var conn = db.CONN())
+            {
+                db.Connect();
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                        {
+                            usuario = new usuariosDto
+                            {
+                                id_usuario = (int)rdr["id_usuario"],
+                                numero_documento = rdr["numero_documento"].ToString(),
+                                tipo_documento = rdr["tipo_documento"].ToString(),
+                                nombres = rdr["nombres"].ToString(),
+                                apellidos = rdr["apellidos"].ToString(),
+                                telefono = rdr["telefono"].ToString(),
+                                correo_electronico = rdr["correo_electronico"].ToString(),
+                                contrasena = rdr["contrasena"].ToString(),
+                                id_rol = (int)rdr["id_rol"]
+                            };
+                        }
+                    }
+                }
+                db.Disconnect();
+            }
+            return usuario;
+        }
+
 
 
         public usuariosDto BuscarUsuarioPorNumeroDocumento(string numeroDocumento)
@@ -92,6 +130,8 @@ namespace ViviGest.Repositories
             return user;
         }
 
+
+
         public bool BuscarUsuario(string username)
         {
             bool result = false;
@@ -126,6 +166,8 @@ namespace ViviGest.Repositories
             connection.Disconnect();
             return result;
         }
+       
+
 
         public IEnumerable<usuariosDto> GetAllUsuarios()
         {

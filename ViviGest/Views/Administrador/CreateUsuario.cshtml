@@ -5,7 +5,42 @@
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<h2 class="text-center mb-4">Crear Nuevo Usuario</h2>
+<style>
+    label {
+        color: #333333;
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #e0434b !important;
+            border-color: #e0434b !important;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d !important;
+        border-color: #6c757d !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268 !important;
+            border-color: #5a6268 !important;
+        }
+
+    .text-danger {
+        font-weight: 700;
+        color: #c82333 !important;
+        font-size: 0.875rem;
+    }
+</style>
 
 <div class="container">
     @using (Html.BeginForm())
@@ -37,7 +72,7 @@
                 @Html.LabelFor(model => model.tipo_documento, "Tipo de documento:", htmlAttributes: new { @class = "col-sm-4 col-form-label text-sm-end" })
                 <div class="col-sm-8">
                     @Html.DropDownListFor(model => model.tipo_documento,
-                        new SelectList(new List<string> { "Cédula", "Pasaporte", "DNI" }),
+                        new SelectList(new List<string> { "Cédula", "Pasaporte", "Cedula Extranjera" }),
                         "Selecciona",
                         new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.tipo_documento, "", new { @class = "text-danger" })

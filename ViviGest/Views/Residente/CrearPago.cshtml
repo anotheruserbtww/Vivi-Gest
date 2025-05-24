@@ -2,30 +2,98 @@
 
 @{
     ViewBag.Title = "Crear Pago";
+    Layout = "~/Views/Shared/_Layout_Residente.cshtml";
 }
 
-<h2>Crear Pago</h2>
+<style>
+    .container-fixed {
+        max-width: 480px;
+        margin: 60px auto 80px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        background-color: #fff;
+    }
 
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
+    h2.custom-title {
+        color: #ff4f5a;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    label.form-label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.monto)
-        @Html.TextBoxFor(m => m.monto, new { @class = "form-control", placeholder = "Monto a pagar" })
-        @Html.ValidationMessageFor(m => m.monto, "", new { @class = "text-danger" })
-    </div>
+    .btn-custom {
+        background-color: #ff4f5a;
+        border-color: #ff4f5a;
+        color: white;
+        font-weight: 600;
+        padding: 10px 30px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.metodo_pago)
-        @Html.TextBoxFor(m => m.metodo_pago, new { @class = "form-control", placeholder = "Método de pago" })
-        @Html.ValidationMessageFor(m => m.metodo_pago, "", new { @class = "text-danger" })
-    </div>
+        .btn-custom:hover {
+            background-color: #e2434b;
+            border-color: #e2434b;
+            color: white;
+        }
 
-    <button type="submit" class="btn btn-primary">Enviar Pago</button>
-}
+    .btn-link {
+        font-weight: 600;
+        color: #ff4f5a;
+        text-decoration: none;
+        align-self: center;
+    }
+
+        .btn-link:hover {
+            color: #e2434b;
+            text-decoration: underline;
+        }
+
+    .form-control {
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+
+    .text-danger {
+        font-size: 0.875rem;
+        margin-top: 4px;
+    }
+</style>
+
+<div class="container-fixed">
+    <h2 class="custom-title">Registrar Nuevo Pago</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+        <div class="mb-4">
+            <label for="monto" class="form-label">Monto a Pagar (mínimo $125,000)</label>
+            @Html.TextBoxFor(m => m.monto, new { @class = "form-control", type = "number", min = "125000", max = "1000000", step = "1000", placeholder = "Ejemplo: 150000" })
+            @Html.ValidationMessageFor(m => m.monto, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-5">
+            <label for="metodo_pago" class="form-label">Método de Pago</label>
+            @Html.TextBoxFor(m => m.metodo_pago, new { @class = "form-control", placeholder = "Ejemplo: Tarjeta de crédito" })
+            @Html.ValidationMessageFor(m => m.metodo_pago, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-custom">Crear Pago</button>
+            <a href="@Url.Action("Pendientes", "Pago")" class="btn btn-link">Cancelar</a>
+        </div>
+    }
+</div>

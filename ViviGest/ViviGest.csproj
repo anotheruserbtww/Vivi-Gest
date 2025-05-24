@@ -206,10 +206,8 @@
     <Content Include="Content\css\style.scss" />
     <None Include="Views\Administrador\ReportePagos.cshtml" />
     <Content Include="Views\Residente\Index.cshtml" />
-    <Content Include="Views\Residente\Create.cshtml" />
     <Content Include="Views\Residente\Edit.cshtml" />
     <Content Include="Views\Residente\Details.cshtml" />
-    <Content Include="Views\Residente\Delete.cshtml" />
     <Content Include="Views\Pago\Details.cshtml" />
     <Content Include="Views\Pago\Create.cshtml" />
     <Content Include="Views\Pago\Pendiente.cshtml" />
@@ -220,6 +218,7 @@
     <Content Include="Views\Correspondencia\Create.cshtml" />
     <Content Include="Views\Correspondencia\Edit.cshtml" />
     <Content Include="Views\Correspondencia\Delete.cshtml" />
+    <Content Include="Views\Shared\_Layout_Residente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
