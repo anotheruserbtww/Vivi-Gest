@@ -9,7 +9,7 @@ using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
-    [AuthorizeRole(2)]
+    [AuthorizeRole(2,3)]
     public class VisitanteController : Controller
     {
         private readonly VisitanteService _service = new VisitanteService();

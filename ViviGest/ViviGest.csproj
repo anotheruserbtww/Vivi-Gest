@@ -220,6 +220,8 @@
     <Content Include="Views\Correspondencia\Create.cshtml" />
     <Content Include="Views\Correspondencia\Edit.cshtml" />
     <Content Include="Views\Correspondencia\Delete.cshtml" />
+    <Content Include="Views\Home\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_Layout_guarda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

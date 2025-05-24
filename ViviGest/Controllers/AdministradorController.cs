@@ -157,7 +157,7 @@ namespace ViviGest.Controllers
                 doc.Open();
 
                 // Logo
-                var logo = Image.GetInstance(Server.MapPath("~/Content/img/logo.jpg"));
+                var logo = Image.GetInstance(Server.MapPath("~/Content/img/logo.png"));
                 logo.ScaleAbsolute(100, 100);
                 logo.Alignment = Element.ALIGN_CENTER;
                 doc.Add(logo);

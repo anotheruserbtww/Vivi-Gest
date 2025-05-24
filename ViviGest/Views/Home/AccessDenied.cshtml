@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Acceso Denegado";
+    int? userRole = (int?)Session["UserRole"];
+    string redirectAction = "Index";
+    string redirectController = "Home";
+
+    // Definir redirección basada en el rol del usuario
+    switch (userRole)
+    {
+        case 1:
+            redirectController = "Administrador";
+            break;
+        case 2:
+            redirectController = "Home";
+            break;
+        case 3:
+            redirectController = "Home";
+            break;
+        default:
+            redirectController = "Home";
+            break;
+    }
+}
+
+<h2>Acceso Denegado</h2>
+<p>No tienes permisos para acceder a esta página.</p>
+<a href="@Url.Action(redirectAction, redirectController)">Volver a tu página de inicio</a>
