@@ -1,0 +1,76 @@
+﻿@model ViviGest.Dtos.VisitanteDto
+
+@{
+    ViewBag.Title = "Editar Visitante";
+    Layout = "~/Views/Shared/_Layout_guarda.cshtml";
+}
+
+<div class="container" style="margin-top: 40px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center text-warning">
+                <i class="fas fa-edit" style="margin-right: 8px;"></i> Editar Información del Visitante
+            </h3>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id_visitante)
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("Nombre Completo", htmlAttributes: new { @class = "control-label" }) @Html.TextBoxFor(m => m.nombre_completo, new { @class = "form-control", placeholder = "Ej: Juan Pérez" })
+                            @Html.ValidationMessageFor(m => m.nombre_completo, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("Tipo de documento", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                            @Html.DropDownListFor(m => m.tipo_documento,
+                                new SelectList(new List<SelectListItem> {
+                                    new SelectListItem { Text = "Cédula de Ciudadanía", Value = "CC" },
+                                    new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                                    new SelectListItem { Text = "Cédula de Extranjería", Value = "CE" }
+                                }, "Value", "Text"),
+                                "Selecciona un tipo...",
+                                new { @class = "form-control" }) @* form-control también para selects en BS3 *@
+                                @Html.ValidationMessageFor(m => m.tipo_documento, "", new { @class = "text-danger help-block" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.Label("Numero de Documento", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control", placeholder = "Ej: 123456789" })
+                                @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.Label(" Destino", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.destino, new { @class = "form-control", placeholder = "Ej: Oficina 305" })
+                                @Html.ValidationMessageFor(m => m.destino, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 25px;">
+                        <div class="col-md-12 text-right">
+                            <a href="@Url.Action("Index")" class="btn btn-default" style="margin-right: 10px;">
+                                <i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Volver
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save" style="margin-right: 5px;"></i> Actualizar
+                            </button>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+</div>

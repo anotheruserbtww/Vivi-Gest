@@ -4,15 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GastroByte.Dtos
+namespace ViviGest.Dtos
 {
-    public class UsuarioDto
+    public class usuariosDto
     {
+        internal int rol;
+
         public int id_usuario { get; set; }
 
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
-        public string nombre { get; set; } = string.Empty;
+        public string nombres { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El apellido es obligatorio.")]
         public string apellidos { get; set; } = string.Empty;
@@ -34,8 +36,10 @@ namespace GastroByte.Dtos
         [Required(ErrorMessage = "La contraseña es obligatoria.")]
         [DataType(DataType.Password)]
         public string contrasena { get; set; } = string.Empty;
+        public string StoredHash { get; set; }
 
-        public int id_estado { get; set; }
+
+
         public int Response { get; set; }
         public string Message { get; set; } = string.Empty;
         public int id_rol { get; set; }

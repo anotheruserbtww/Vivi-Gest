@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ViviGest.Dtos.PagoDto>
+
+@{
+    ViewBag.Title = "Mis Pagos";
+    Layout = "~/Views/Shared/_Layout_Residente.cshtml"; // o el layout que uses para residente
+}
+
+<h2 class="mb-4" style="color: #ff4f5a; font-weight: 700;">Mis Pagos</h2>
+
+<table class="table table-bordered table-striped">
+    <thead style="background-color: #ff4f5a; color: white; font-weight: 600;">
+        <tr>
+            <th>ID Pago</th>
+            <th>Monto</th>
+            <th>Método de Pago</th>
+            <th>Fecha de Pago</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted fst-italic">No tienes pagos registrados.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var pago in Model)
+            {
+                <tr>
+                    <td>@pago.id_pago</td>
+                    <td>@pago.monto.ToString("C2")</td>
+                    <td>@pago.metodo_pago</td>
+                    <td>@pago.fecha_pago.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        @if (pago.estado == "Pendiente")
+                        {
+                            <span class="badge" style="background-color: #ff4f5a; color: white; font-weight: 600;">Pendiente</span>
+                        }
+                        else if (pago.estado == "Pagado")
+                        {
+                            <span class="badge bg-success" style="font-weight: 600;">Pagado</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary" style="font-weight: 600;">@pago.estado</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

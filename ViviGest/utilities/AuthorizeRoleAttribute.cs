@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GastroByte.Utilities
+namespace ViviGest.Utilities
 {
     public class AuthorizeRoleAttribute : ActionFilterAttribute
     {

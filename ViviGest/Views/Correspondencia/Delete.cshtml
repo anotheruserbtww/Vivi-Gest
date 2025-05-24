@@ -1,0 +1,40 @@
+﻿@model ViviGest.Dtos.CorrespondenciaDto
+
+@{
+    ViewBag.Title = "Eliminar Correspondencia";
+    Layout = "~/Views/Shared/_Layout_guarda.cshtml";
+}
+
+<h3>Confirmar eliminación de correspondencia</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">ID</dt>
+        <dd class="col-sm-9">@Model.id_correspondencia</dd>
+
+        <dt class="col-sm-3">Destinatario</dt>
+        <dd class="col-sm-9">@Model.destinatario</dd>
+
+        <dt class="col-sm-3">Tipo</dt>
+        <dd class="col-sm-9">@Model.tipo_correspondencia</dd>
+
+        <dt class="col-sm-3">Número Apartamento</dt>
+        <dd class="col-sm-9">@Model.numero_apartamento</dd>
+
+        <dt class="col-sm-3">Remitente</dt>
+        <dd class="col-sm-9">@Model.remitente</dd>
+
+        <dt class="col-sm-3">Fecha Recepción</dt>
+        <dd class="col-sm-9">@Model.fecha_recepcion.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9">@Model.estado</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Correspondencia", new { id = Model.id_correspondencia }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary ms-2" })
+}

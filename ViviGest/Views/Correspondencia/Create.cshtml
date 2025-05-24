@@ -1,0 +1,36 @@
+﻿@model ViviGest.Dtos.CorrespondenciaDto
+
+@{
+    ViewBag.Title = "Registrar Correspondencia";
+
+        Layout = "~/Views/Shared/_Layout_guarda.cshtml";
+    }
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.destinatario, "Seleccione Residente")
+        @Html.DropDownListFor(m => m.destinatario, ViewBag.Residentes as IEnumerable<SelectListItem>, "Seleccione...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.destinatario)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.tipo_correspondencia)
+        @Html.TextBoxFor(m => m.tipo_correspondencia, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.numero_apartamento)
+        @Html.TextBoxFor(m => m.numero_apartamento, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.remitente)
+        @Html.TextBoxFor(m => m.remitente, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+}

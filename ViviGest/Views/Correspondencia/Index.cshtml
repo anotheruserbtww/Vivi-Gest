@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<ViviGest.Dtos.CorrespondenciaDto>
+
+@{
+    ViewBag.Title = "Listado de Correspondencia";
+    Layout = "~/Views/Shared/_Layout_guarda.cshtml";
+}
+
+<h2>Correspondencia</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Destinatario (ID)</th> <!-- Agregado -->
+            <th>Tipo</th>
+            <th>Número Apartamento</th>
+            <th>Remitente</th>
+            <th>Fecha Recepción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_correspondencia</td>
+                <td>@item.destinatario</td> <!-- Agregado -->
+                <td>@item.tipo_correspondencia</td>
+                <td>@item.numero_apartamento</td>
+                <td>@item.remitente</td>
+                <td>@item.fecha_recepcion.ToString("dd/MM/yyyy")</td>
+                <td>@item.estado</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_correspondencia }, new { @class = "btn btn-sm btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_correspondencia }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<p>
+    @Html.ActionLink("Nueva Correspondencia", "Create", null, new { @class = "btn btn-primary" })
+</p>

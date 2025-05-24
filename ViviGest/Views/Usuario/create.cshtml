@@ -1,0 +1,132 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Crear Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .card.shadow {
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .form-label-bs3 {
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 5px;
+    }
+
+    .form-button-container-bs3 {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eeeeee;
+        text-align: right;
+    }
+
+        .form-button-container-bs3 .btn {
+            margin-left: 8px;
+        }
+
+    .btn .fa {
+        margin-right: 6px;
+    }
+
+    .help-block {
+        margin-top: 3px;
+        font-size: 0.9em;
+    }
+</style>
+
+<div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+    <div class="card shadow" style="padding: 25px;">
+        <h3 style="margin-bottom: 25px; color: #ff4f5a; font-weight: bold;">
+            <i class="fas fa-user-plus" style="margin-right: 8px;"></i> Crear Nuevo Usuario
+        </h3>
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "usuarioForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Nombre", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.TextBoxFor(m => m.nombres, new { @class = "form-control", placeholder = "Ej: Juan" })
+                        @Html.ValidationMessageFor(m => m.nombres, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Apellido", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control", placeholder = "Ej: Pérez" })
+                        @Html.ValidationMessageFor(m => m.apellidos, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.tipo_documento, htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.DropDownListFor(m => m.tipo_documento,
+                            new SelectList(new List<SelectListItem> {
+                                new SelectListItem { Text = "Cédula de Ciudadanía", Value = "CC" },
+                                new SelectListItem { Text = "Pasaporte", Value = "Pasaporte" },
+                                new SelectListItem { Text = "Cédula de Extranjería", Value = "CE" }
+                            }, "Value", "Text"),
+                            "Selecciona un tipo...",
+                            new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.tipo_documento, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Número de documento", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.TextBoxFor(m => m.numero_documento, new { @class = "form-control", placeholder = "Ej: 123456789" })
+                        @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Telefono", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Ej: 3001234567" })
+                        @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Correo", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                        @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", placeholder = "ejemplo@correo.com", type = "email" })
+                        @Html.ValidationMessageFor(m => m.correo_electronico, "", new { @class = "text-danger help-block" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.Label("Contraseña", htmlAttributes: new { @class = "form-label-bs3 control-label" })
+                    @Html.PasswordFor(m => m.contrasena, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger help-block" })
+                </div>
+            </div>
+
+            @Html.HiddenFor(m => m.id_rol, new { Value = 1 })
+
+            <div class="form-button-container-bs3">
+                <a href="@Url.Action("Login", "Usuario")" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i> Guardar
+                </button>
+            </div>
+        }
+    </div>
+</div>

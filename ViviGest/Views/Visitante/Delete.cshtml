@@ -1,0 +1,60 @@
+﻿@model ViviGest.Dtos.VisitanteDto
+
+@{
+    ViewBag.Title = "Eliminar Visitante";
+    Layout = "~/Views/Shared/_Layout_guarda.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Card with modern gradient and bold style -->
+    <div class="card border-danger shadow-xl rounded-4 p-5" style="background: linear-gradient(145deg, rgba(255, 87, 34, 0.1), rgba(233, 30, 99, 0.1));">
+        <h3 class="text-danger text-center mb-4">
+            <i class="fas fa-exclamation-triangle me-2"></i> ¡Atención! Confirmar Eliminación
+        </h3>
+
+        <p class="lead text-center text-warning mb-4">
+            <strong>Esta acción es irreversible. ¿Estás seguro de que deseas eliminar este visitante?</strong>
+        </p>
+
+        <!-- Sección de Detalles -->
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mb-3">
+                <div class="card shadow-sm p-3">
+                    <h5 class="text-primary">Detalles del Visitante</h5>
+                    <dl class="row">
+                        <dt class="col-sm-5 fw-bold">ID Visitante</dt>
+                        <dd class="col-sm-7">@Model.id_visitante</dd>
+
+                        <dt class="col-sm-5 fw-bold">Nombre Completo</dt>
+                        <dd class="col-sm-7">@Model.nombre_completo</dd>
+
+                        <dt class="col-sm-5 fw-bold">Tipo de Documento</dt>
+                        <dd class="col-sm-7">@Model.tipo_documento</dd>
+
+                        <dt class="col-sm-5 fw-bold">Número de Documento</dt>
+                        <dd class="col-sm-7">@Model.numero_documento</dd>
+
+                        <dt class="col-sm-5 fw-bold">Destino</dt>
+                        <dd class="col-sm-7">@Model.destino</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("Delete", "Visitante", new { id_visitante = Model.id_visitante }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="mt-4 d-flex justify-content-between">
+                <button type="submit" class="btn btn-danger btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Eliminar permanentemente" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                    <i class="fas fa-trash-alt me-2"></i> Eliminar
+                </button>
+
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary btn-lg shadow-lg px-5 py-3" data-toggle="tooltip" title="Cancelar y volver al listado" style="transition: transform 0.3s ease-in-out; border-radius: 10px;">
+                    <i class="fas fa-times me-2"></i> Cancelar
+                </a>
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using BCrypt.Net;
 
-namespace GastroByte.Utilities
+namespace ViviGest.Utilities
 {
     public class EncryptUtility
     {

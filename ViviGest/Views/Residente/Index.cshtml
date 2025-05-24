@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ViviGest.Dtos.CorrespondenciaDto>
+
+@{
+    ViewBag.Title = "Mis Paquetes y Correspondencia";
+    Layout = "~/Views/Shared/_Layout_Residente.cshtml"; // o el layout que uses para residente
+}
+
+<h2 class="mb-4">Mis Paquetes y Correspondencia</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No tienes paquetes o correspondencia pendiente.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Tipo</th>
+                <th>Remitente</th>
+                <th>Apartamento</th>
+                <th>Fecha de Recepción</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.tipo_correspondencia</td>
+                    <td>@item.remitente</td>
+                    <td>@item.numero_apartamento</td>
+                    <td>@item.fecha_recepcion.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        @if (item.estado == "Pendiente")
+                        {
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        }
+                        else if (item.estado == "Entregado")
+                        {
+                            <span class="badge bg-success">Entregado</span>
+                        }
+                        else
+                        {
+                            @item.estado
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

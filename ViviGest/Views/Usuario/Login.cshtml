@@ -1,0 +1,68 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // o el layout que uses
+}
+
+<style>
+    .btn-primary {
+        background-color: #ff4f5a !important;
+        border-color: #ff4f5a !important;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #e2434b !important;
+            border-color: #e2434b !important;
+        }
+
+    .form-group label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .text-danger {
+        font-size: 0.875rem;
+    }
+
+    a {
+        color: #ff4f5a;
+        font-weight: 600;
+    }
+
+        a:hover {
+            color: #e2434b;
+            text-decoration: underline;
+        }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+            <h4 class="text-center mb-4" style="color: #ff4f5a; font-weight: 700;">Iniciar Sesión</h4>
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.numero_documento, "Nº de documento")
+                @Html.EditorFor(m => m.numero_documento, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su número de documento" } })
+                @Html.ValidationMessageFor(m => m.numero_documento, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-4">
+                @Html.LabelFor(m => m.contrasena, "Contraseña")
+                @Html.PasswordFor(m => m.contrasena, new { @class = "form-control", placeholder = "Ingrese su contraseña" })
+                @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+
+            <div class="text-center mt-3">
+                <p>¿No tienes una cuenta? <a href="@Url.Action("Create", "Usuario")">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+}

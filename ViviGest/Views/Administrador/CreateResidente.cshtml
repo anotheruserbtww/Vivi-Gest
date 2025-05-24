@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ViviGest.Dtos.usuariosDto>
+
+
+@{
+    ViewBag.Title = "Crear Residente";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Usuario</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Documento</th>
+            <th>Correo</th>
+            <!-- lo que necesites mostrar -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var residente in Model)
+        {
+            <tr>
+                <td>@residente.id_usuario</td>
+                <td>@residente.nombres</td>
+                <td>@residente.apellidos</td>
+                <td>@residente.numero_documento</td>
+                <td>@residente.correo_electronico</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

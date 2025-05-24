@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ViviGest.Utilities;
 
 namespace ViviGest.Controllers
 {
@@ -13,9 +14,17 @@ namespace ViviGest.Controllers
             return View();
         }
 
+        public ActionResult carlos()
+        {
+            return View();
+        }
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            DBContextUtility dbUtility = new DBContextUtility();
+            bool isConnected = dbUtility.Connect();  // Intenta conectar a la base de datos
+
+            ViewBag.ConnectionStatus = isConnected ? "Todo Melo" : "No hay conexión";  // Envía el estado de la conexión a la vista
+            dbUtility.Disconnect();
 
             return View();
         }
@@ -24,6 +33,10 @@ namespace ViviGest.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult AccessDenied()
+        {
             return View();
         }
     }

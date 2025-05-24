@@ -1,0 +1,20 @@
+﻿@model ViviGest.Dtos.usuariosDto
+
+@{
+    ViewBag.Title = "Detalle Residente";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Detalle Residente</h2>
+
+<table class="table table-bordered">
+    <tr><th>ID</th><td>@Model.id_usuario</td></tr>
+    <tr><th>Nombres</th><td>@Model.nombres</td></tr>
+    <tr><th>Apellidos</th><td>@Model.apellidos</td></tr>
+    <tr><th>Número Documento</th><td>@Model.numero_documento</td></tr>
+    <tr><th>Correo Electrónico</th><td>@Model.correo_electronico</td></tr>
+    <tr><th>Teléfono</th><td>@Model.telefono</td></tr>
+</table>
+
+<a href="@Url.Action("Edit", new { id = Model.id_usuario })" class="btn btn-warning">Editar</a>
+<a href="@Url.Action("Index")" class="btn btn-secondary">Volver</a>
